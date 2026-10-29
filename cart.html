@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart | Viulhi</title>
+  <meta name="description" content="Review your Viulhi cart: handmade crochet from the Maldives." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) -->
+  <link rel="stylesheet" href="css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="css/layout.css?v=202610291533" />
+  <!-- Page -->
+  <link rel="stylesheet" href="css/cart.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme applies before the page paints -->
+  <script src="js/theme.js?v=202610291533"></script>
+  <script src="js/config.js?v=202610291533" defer></script>
+  <script src="js/store-settings.js?v=202610291533" defer></script>
+  <script src="js/catalog.js?v=202610291533" defer></script>
+  <script src="js/cart.js?v=202610291533" defer></script>
+  <script src="js/product-card.js?v=202610291533" defer></script>
+  <script src="js/auth.js?v=202610291533" defer></script>
+  <script src="js/main.js?v=202610291533" defer></script>
+  <script src="js/cart-page.js?v=202610291533" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    Delivery across Malé, Hulhumalé &amp; the islands · <a href="custom.html">Custom orders open</a>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <i class="hgi hgi-stroke hgi-menu-01"></i>
+      </button>
+
+      <a href="index.html" class="logo" aria-label="Viulhi home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="11" cy="12" r="7.5" />
+            <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+          </svg>
+        </span>
+        Viulhi
+      </a>
+
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-menu" data-open="false">
+            <button type="button" aria-expanded="false" aria-controls="shop-menu">Shop <i class="hgi hgi-stroke hgi-arrow-down-01"></i></button>
+            <div class="nav-menu" id="shop-menu">
+              <ul data-category-links="icons"></ul>
+            </div>
+          </li>
+          <li><a href="custom.html">Custom Orders</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
+          <i class="hgi hgi-stroke hgi-moon-02 i-moon"></i>
+          <i class="hgi hgi-stroke hgi-sun-03 i-sun"></i>
+        </button>
+        <a class="icon-btn cart-btn" href="cart.html" aria-label="Shopping cart, empty">
+          <i class="hgi hgi-stroke hgi-shopping-cart-01"></i>
+          <span class="count-badge" id="cart-count" hidden></span>
+        </a>
+        <a class="btn btn-dark btn-sm" href="account.html" data-account-link>Sign in</a>
+      </div>
+    </div>
+
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="container">
+        <form role="search">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+          <label class="visually-hidden" for="q">Search products</label>
+          <input class="input" id="q" type="search" placeholder="Search toys, bags, yarn…" />
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Mobile drawer ===== -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-head">
+        <span class="logo">Viulhi</span>
+        <button class="icon-btn drawer-close" type="button" aria-label="Close menu" data-close-drawer>
+          <i class="hgi hgi-stroke hgi-cancel-01"></i>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Mobile">
+        <a href="index.html">Home <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="shop.html">Shop all <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="custom.html">Custom Orders <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="#contact">Contact <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+      </nav>
+      <p class="drawer-label">Shop by category</p>
+      <ul class="drawer-cats" data-category-links="icons"></ul>
+      <a class="btn btn-dark" href="account.html" data-account-link>Sign in</a>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="page-head">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+        <span aria-current="page">Cart</span>
+      </nav>
+      <div class="page-head-row">
+        <h1>Your cart <small id="cart-heading-count"></small></h1>
+      <nav class="segmented" aria-label="Cart and orders">
+        <a href="cart.html" aria-current="page"><i class="hgi hgi-stroke hgi-shopping-cart-01" aria-hidden="true"></i>Cart <span class="seg-count" data-cart-count hidden></span></a>
+        <a href="orders.html"><i class="hgi hgi-stroke hgi-package" aria-hidden="true"></i>My orders</a>
+      </nav>
+      </div>
+    </div>
+
+    <!-- ===== Cart with items ===== -->
+    <div class="cart-layout" id="cart-filled" hidden>
+      <section aria-label="Items in your cart">
+        <div class="cart-head" aria-hidden="true">
+          <span>Product</span><span>Quantity</span><span>Total</span><span></span>
+        </div>
+        <ul id="cart-items"></ul>
+        <div class="cart-actions">
+          <a class="link-btn" href="index.html#featured"><i class="hgi hgi-stroke hgi-arrow-left-01"></i>Continue shopping</a>
+        </div>
+      </section>
+
+      <aside class="cart-summary">
+        <div class="summary">
+          <h2>Order summary</h2>
+
+          <label class="field-label" for="delivery-zone">Deliver to</label>
+          <div class="select">
+            <select id="delivery-zone"></select>
+            <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+          </div>
+          <p class="delivery-note" id="delivery-note" hidden>
+            <i class="hgi hgi-stroke hgi-information-circle" aria-hidden="true"></i><span></span>
+          </p>
+
+          <dl class="summary-rows">
+            <div class="summary-row"><dt>Subtotal (excl. GST)</dt><dd data-sum="subtotal"></dd></div>
+            <div class="summary-row"><dt data-sum="gst-label">GST</dt><dd data-sum="gst"></dd></div>
+            <div class="summary-row"><dt>Delivery</dt><dd data-sum="delivery"></dd></div>
+            <div class="summary-row summary-saving" data-sum-row="saved" hidden><dt>You save</dt><dd data-sum="saved"></dd></div>
+            <div class="summary-row summary-total"><dt>Total</dt><dd data-sum="total"></dd></div>
+          </dl>
+          <p class="summary-note">All prices in MVR. Total includes GST.</p>
+
+          <button class="btn btn-primary btn-lg" type="button" id="checkout-btn">
+            Proceed to checkout <i class="hgi hgi-stroke hgi-arrow-right-01"></i>
+          </button>
+
+          <ul class="cart-perks">
+            <li><i class="hgi hgi-stroke hgi-favourite" aria-hidden="true"></i>Handmade in Malé</li>
+            <li><i class="hgi hgi-stroke hgi-delivery-truck-01" aria-hidden="true"></i>Delivered across the islands</li>
+            <li><i class="hgi hgi-stroke hgi-pencil-edit-01" aria-hidden="true"></i>Custom colours on request</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ===== Empty cart ===== -->
+    <div class="empty-state" id="cart-empty" hidden>
+      <span class="empty-state-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-shopping-cart-01"></i></span>
+      <h2>Your cart is empty</h2>
+      <p>Nothing on the hook yet. Browse our handmade pieces and find something you'll love.</p>
+      <a class="btn btn-primary btn-lg" href="index.html#featured">Start shopping</a>
+    </div>
+
+    <!-- ===== Recommendations ===== -->
+    <section class="section" aria-labelledby="reco-title">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Pairs well with</span>
+          <h2 id="reco-title">You might also like</h2>
+        </div>
+      </div>
+      <div class="product-grid" id="cart-reco"></div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="11" cy="12" r="7.5" />
+              <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+            </svg>
+          </span>
+          Viulhi
+        </a>
+        <p>Handmade crochet and crochet supplies, made with love in the Maldives.</p>
+        <nav class="footer-social" aria-label="Social media">
+          <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="hgi hgi-stroke hgi-instagram"></i></a>
+          <a class="icon-btn" href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="hgi hgi-stroke hgi-tiktok"></i></a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="hgi hgi-stroke hgi-facebook-01"></i></a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul data-category-links></ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="orders.html">My orders</a></li>
+          <li><a href="#">Delivery information</a></li>
+          <li><a href="#">Returns &amp; exchanges</a></li>
+          <li><a href="custom.html">Custom orders</a></li>
+          <li><a href="terms.html">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h3>Visit &amp; contact</h3>
+        <ul>
+          <li><i class="hgi hgi-stroke hgi-location-01" aria-hidden="true"></i>Malé, Republic of Maldives</li>
+          <li><i class="hgi hgi-stroke hgi-call" aria-hidden="true"></i><a href="tel:+9600000000">+960 000 0000</a></li>
+          <li><i class="hgi hgi-stroke hgi-mail-01" aria-hidden="true"></i><a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="yr">2026</span> Viulhi. All prices in MVR and include 8% GST.</span>
+      <nav aria-label="Legal">
+        <a href="terms.html">Terms &amp; conditions</a>
+        <a href="#">Privacy policy</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

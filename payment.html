@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment | Viulhi</title>
+  <meta name="description" content="Pay for your Viulhi order by bank transfer and track its status." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) -->
+  <link rel="stylesheet" href="css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="css/layout.css?v=202610291533" />
+  <!-- Page (checkout flow) -->
+  <link rel="stylesheet" href="css/checkout.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme applies before the page paints -->
+  <script src="js/theme.js?v=202610291533"></script>
+  <script src="js/config.js?v=202610291533" defer></script>
+  <script src="js/store-settings.js?v=202610291533" defer></script>
+  <script src="js/catalog.js?v=202610291533" defer></script>
+  <script src="js/cart.js?v=202610291533" defer></script>
+  <script src="js/product-card.js?v=202610291533" defer></script>
+  <script src="js/forms.js?v=202610291533" defer></script>
+  <script src="js/order-store.js?v=202610291533" defer></script>
+  <script src="js/file-store.js?v=202610291533" defer></script>
+  <script src="js/auth.js?v=202610291533" defer></script>
+  <script src="js/main.js?v=202610291533" defer></script>
+  <script src="js/payment.js?v=202610291533" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    Delivery across Malé, Hulhumalé &amp; the islands · <a href="custom.html">Custom orders open</a>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <i class="hgi hgi-stroke hgi-menu-01"></i>
+      </button>
+
+      <a href="index.html" class="logo" aria-label="Viulhi home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="11" cy="12" r="7.5" />
+            <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+          </svg>
+        </span>
+        Viulhi
+      </a>
+
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-menu" data-open="false">
+            <button type="button" aria-expanded="false" aria-controls="shop-menu">Shop <i class="hgi hgi-stroke hgi-arrow-down-01"></i></button>
+            <div class="nav-menu" id="shop-menu">
+              <ul data-category-links="icons"></ul>
+            </div>
+          </li>
+          <li><a href="custom.html">Custom Orders</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
+          <i class="hgi hgi-stroke hgi-moon-02 i-moon"></i>
+          <i class="hgi hgi-stroke hgi-sun-03 i-sun"></i>
+        </button>
+        <a class="icon-btn cart-btn" href="cart.html" aria-label="Shopping cart, empty">
+          <i class="hgi hgi-stroke hgi-shopping-cart-01"></i>
+          <span class="count-badge" id="cart-count" hidden></span>
+        </a>
+        <a class="btn btn-dark btn-sm" href="account.html" data-account-link>Sign in</a>
+      </div>
+    </div>
+
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="container">
+        <form role="search">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+          <label class="visually-hidden" for="q">Search products</label>
+          <input class="input" id="q" type="search" placeholder="Search toys, bags, yarn…" />
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Mobile drawer ===== -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-head">
+        <span class="logo">Viulhi</span>
+        <button class="icon-btn drawer-close" type="button" aria-label="Close menu" data-close-drawer>
+          <i class="hgi hgi-stroke hgi-cancel-01"></i>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Mobile">
+        <a href="index.html">Home <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="shop.html">Shop all <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="custom.html">Custom Orders <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="#contact">Contact <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+      </nav>
+      <p class="drawer-label">Shop by category</p>
+      <ul class="drawer-cats" data-category-links="icons"></ul>
+      <a class="btn btn-dark" href="account.html" data-account-link>Sign in</a>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="page-head">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+        <a href="orders.html">My orders</a>
+        <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+        <span aria-current="page" id="crumb-current">Payment</span>
+      </nav>
+      <h1 id="pay-title">Payment</h1>
+    </div>
+
+    <!-- ===== Order not found ===== -->
+    <div class="empty-state" id="pay-missing" hidden>
+      <span class="empty-state-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-package"></i></span>
+      <h2>We couldn't find that order</h2>
+      <p>Check the link, or contact us with your order number and we'll help you out.</p>
+      <a class="btn btn-primary btn-lg" href="index.html">Back to shop</a>
+    </div>
+
+    <div id="pay-main" hidden>
+      <!-- ===== Order status ===== -->
+      <section class="status-card pay-status" aria-labelledby="status-title">
+        <div class="status-card-head">
+          <div>
+            <h2 id="status-title">Order <span data-order="ref"></span></h2>
+            <p>Placed <span data-order="placed"></span></p>
+          </div>
+          <span class="badge badge-status" id="status-badge"></span>
+        </div>
+        <div id="status-track"></div>
+      </section>
+
+      <div class="checkout-layout pay-layout">
+        <!-- ===== Pay ===== -->
+        <form class="checkout-steps" id="pay-form" novalidate hidden>
+          <section class="step" aria-labelledby="step-bank">
+            <div class="step-head">
+              <span class="step-num">01</span>
+              <div>
+                <h2 id="step-bank">Transfer the total</h2>
+                <p>Choose a bank and transfer the exact amount using your banking app.</p>
+              </div>
+            </div>
+
+            <p class="field-label" id="bank-label">Choose a bank</p>
+            <div class="radio-cards" id="bank-options" role="radiogroup" aria-labelledby="bank-label"></div>
+
+            <dl class="bank-details" id="bank-details">
+              <div class="bank-row"><dt>Bank</dt><dd data-bank="bank"></dd></div>
+              <div class="bank-row"><dt>Account name</dt><dd data-bank="accountName"></dd>
+                <button class="icon-btn copy-btn" type="button" data-copy="accountName" aria-label="Copy account name"><i class="hgi hgi-stroke hgi-copy-01"></i></button></div>
+              <div class="bank-row"><dt>Account number</dt><dd data-bank="accountNumber"></dd>
+                <button class="icon-btn copy-btn" type="button" data-copy="accountNumber" aria-label="Copy account number"><i class="hgi hgi-stroke hgi-copy-01"></i></button></div>
+              <div class="bank-row"><dt>Reference</dt><dd data-bank="reference"></dd>
+                <button class="icon-btn copy-btn" type="button" data-copy="reference" aria-label="Copy reference"><i class="hgi hgi-stroke hgi-copy-01"></i></button></div>
+              <div class="bank-row is-amount"><dt>Amount to transfer</dt><dd data-bank="amount"></dd>
+                <button class="icon-btn copy-btn" type="button" data-copy="amount" aria-label="Copy amount"><i class="hgi hgi-stroke hgi-copy-01"></i></button></div>
+            </dl>
+
+            <ol class="transfer-steps">
+              <li><span>Transfer the <strong>exact amount</strong> using your banking app.</span></li>
+              <li><span>Add the <strong>reference</strong> above to the transfer remarks.</span></li>
+              <li><span>Save the transfer slip or a screenshot and upload it below.</span></li>
+            </ol>
+          </section>
+
+          <section class="step" aria-labelledby="step-slip">
+            <div class="step-head">
+              <span class="step-num">02</span>
+              <div>
+                <h2 id="step-slip">Upload your transfer slip</h2>
+                <p>We'll check it against our bank account and confirm your order.</p>
+              </div>
+            </div>
+            <div class="step-block">
+              <label class="dropzone" id="slip-drop">
+                <input type="file" id="pay-slip" name="slip" />
+                <span class="dropzone-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-cloud-upload"></i></span>
+                <strong>Drag your slip here or <u>browse</u></strong>
+                <small id="slip-rules"></small>
+              </label>
+              <div class="file-chip" id="slip-file" hidden>
+                <span class="file-thumb" id="slip-thumb"></span>
+                <div class="file-info">
+                  <strong id="slip-name"></strong>
+                  <span><i class="hgi hgi-stroke hgi-checkmark-circle-02" aria-hidden="true"></i><em id="slip-size"></em></span>
+                </div>
+                <button class="icon-btn" type="button" id="slip-remove" aria-label="Remove transfer slip"><i class="hgi hgi-stroke hgi-delete-02"></i></button>
+              </div>
+            </div>
+          </section>
+
+          <section class="step place-order" aria-label="Submit payment">
+            <button class="btn btn-primary btn-lg" type="submit" id="pay-btn" disabled>
+              Submit payment <i class="hgi hgi-stroke hgi-arrow-right-01"></i>
+            </button>
+            <p class="place-hint" id="pay-hint" aria-live="polite"></p>
+            <button class="link-btn link-btn-danger cancel-order" type="button" id="cancel-btn">
+              <i class="hgi hgi-stroke hgi-cancel-circle" aria-hidden="true"></i>Cancel order
+            </button>
+          </section>
+        </form>
+
+        <!-- ===== Payment submitted / later statuses ===== -->
+        <section class="confirm" id="pay-done" hidden tabindex="-1">
+          <div class="empty-state">
+            <span class="empty-state-icon confirm-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-tick-02"></i></span>
+            <h2 id="done-title">Thank you!</h2>
+            <p id="done-text">We've received your transfer slip. We'll check the payment and contact you to confirm your order.</p>
+            <span class="confirm-ref"><i class="hgi hgi-stroke hgi-package" aria-hidden="true"></i>Order <span data-order="ref"></span></span>
+          </div>
+
+          <div class="step confirm-next" id="done-next">
+            <div class="step-head">
+              <span class="step-num"><i class="hgi hgi-stroke hgi-time-01" aria-hidden="true"></i></span>
+              <div><h2>What happens next</h2></div>
+            </div>
+            <ol class="transfer-steps">
+              <li><span><strong>We verify your transfer</strong> against our bank account.</span></li>
+              <li><span><strong>We confirm your order</strong> by SMS or call on <span data-order="phone"></span>.</span></li>
+              <li><span><strong>We pack and deliver</strong> your order, or hand it to your ferry or cargo service.</span></li>
+            </ol>
+          </div>
+
+          <div class="confirm-actions">
+            <button class="btn btn-dark btn-lg" type="button" id="restore-btn" hidden>
+              <i class="hgi hgi-stroke hgi-shopping-cart-add-01" aria-hidden="true"></i>Add items back to cart
+            </button>
+            <a class="btn btn-outline btn-lg" href="orders.html">View all orders</a>
+            <a class="btn btn-primary btn-lg" href="index.html">Continue shopping</a>
+          </div>
+        </section>
+
+        <!-- ===== Summary ===== -->
+        <aside class="checkout-summary">
+          <div class="summary">
+            <div class="summary-head"><h2>Order summary</h2></div>
+            <ul class="mini-items" id="mini-items"></ul>
+            <dl class="summary-rows">
+              <div class="summary-row"><dt>Subtotal (excl. GST)</dt><dd data-sum="subtotal"></dd></div>
+              <div class="summary-row"><dt data-sum="gst-label">GST</dt><dd data-sum="gst"></dd></div>
+              <div class="summary-row"><dt>Delivery</dt><dd data-sum="delivery"></dd></div>
+              <div class="summary-row summary-saving" data-sum-row="saved" hidden><dt>You save</dt><dd data-sum="saved"></dd></div>
+              <div class="summary-row summary-total"><dt>Total</dt><dd data-sum="total"></dd></div>
+            </dl>
+            <p class="summary-note">All prices in MVR. Total includes GST.</p>
+
+            <div class="deliver-to">
+              <h3>Deliver to</h3>
+              <p><strong data-order="name"></strong></p>
+              <p data-order="phone"></p>
+              <p data-order="address"></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ===== Cancel confirmation ===== -->
+    <dialog class="dialog" id="cancel-dialog" aria-labelledby="cancel-title" aria-describedby="cancel-text">
+      <span class="dialog-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-alert-02"></i></span>
+      <h2 id="cancel-title">Cancel this order?</h2>
+      <p id="cancel-text">Order <strong data-order="ref"></strong> will be cancelled. Please don't transfer any money for it. You can add the items back to your cart afterwards.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-danger btn-lg" type="button" id="cancel-confirm">Yes, cancel order</button>
+        <button class="btn btn-outline btn-lg" type="button" id="cancel-keep" autofocus>Keep my order</button>
+      </div>
+    </dialog>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="11" cy="12" r="7.5" />
+              <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+            </svg>
+          </span>
+          Viulhi
+        </a>
+        <p>Handmade crochet and crochet supplies, made with love in the Maldives.</p>
+        <nav class="footer-social" aria-label="Social media">
+          <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="hgi hgi-stroke hgi-instagram"></i></a>
+          <a class="icon-btn" href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="hgi hgi-stroke hgi-tiktok"></i></a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="hgi hgi-stroke hgi-facebook-01"></i></a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul data-category-links></ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="orders.html">My orders</a></li>
+          <li><a href="#">Delivery information</a></li>
+          <li><a href="#">Returns &amp; exchanges</a></li>
+          <li><a href="custom.html">Custom orders</a></li>
+          <li><a href="terms.html">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h3>Visit &amp; contact</h3>
+        <ul>
+          <li><i class="hgi hgi-stroke hgi-location-01" aria-hidden="true"></i>Malé, Republic of Maldives</li>
+          <li><i class="hgi hgi-stroke hgi-call" aria-hidden="true"></i><a href="tel:+9600000000">+960 000 0000</a></li>
+          <li><i class="hgi hgi-stroke hgi-mail-01" aria-hidden="true"></i><a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="yr">2026</span> Viulhi. All prices in MVR and include 8% GST.</span>
+      <nav aria-label="Legal">
+        <a href="terms.html">Terms &amp; conditions</a>
+        <a href="#">Privacy policy</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

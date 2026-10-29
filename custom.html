@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom Orders | Viulhi</title>
+  <meta name="description" content="Request a custom crochet piece from Viulhi: toys, bags, wearables and gifts made to order in the Maldives." />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) -->
+  <link rel="stylesheet" href="css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="css/layout.css?v=202610291533" />
+  <!-- Page -->
+  <link rel="stylesheet" href="css/custom.css?v=202610291533" />
+  <link rel="stylesheet" href="css/custom-requests.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme applies before the page paints -->
+  <script src="js/theme.js?v=202610291533"></script>
+  <script src="js/config.js?v=202610291533" defer></script>
+  <script src="js/store-settings.js?v=202610291533" defer></script>
+  <script src="js/catalog.js?v=202610291533" defer></script>
+  <script src="js/cart.js?v=202610291533" defer></script>
+  <script src="js/product-card.js?v=202610291533" defer></script>
+  <script src="js/forms.js?v=202610291533" defer></script>
+  <script src="js/file-store.js?v=202610291533" defer></script>
+  <script src="js/order-store.js?v=202610291533" defer></script>
+  <script src="js/auth.js?v=202610291533" defer></script>
+  <script src="js/main.js?v=202610291533" defer></script>
+  <script src="js/custom-requests.js?v=202610291533" defer></script>
+  <script src="js/custom.js?v=202610291533" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    Delivery across Malé, Hulhumalé &amp; the islands · <a href="custom.html">Custom orders open</a>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <i class="hgi hgi-stroke hgi-menu-01"></i>
+      </button>
+
+      <a href="index.html" class="logo" aria-label="Viulhi home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="11" cy="12" r="7.5" />
+            <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+          </svg>
+        </span>
+        Viulhi
+      </a>
+
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-menu" data-open="false">
+            <button type="button" aria-expanded="false" aria-controls="shop-menu">Shop <i class="hgi hgi-stroke hgi-arrow-down-01"></i></button>
+            <div class="nav-menu" id="shop-menu">
+              <ul data-category-links="icons"></ul>
+            </div>
+          </li>
+          <li><a href="custom.html" aria-current="page">Custom Orders</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
+          <i class="hgi hgi-stroke hgi-moon-02 i-moon"></i>
+          <i class="hgi hgi-stroke hgi-sun-03 i-sun"></i>
+        </button>
+        <a class="icon-btn cart-btn" href="cart.html" aria-label="Shopping cart, empty">
+          <i class="hgi hgi-stroke hgi-shopping-cart-01"></i>
+          <span class="count-badge" id="cart-count" hidden></span>
+        </a>
+        <a class="btn btn-dark btn-sm" href="account.html" data-account-link>Sign in</a>
+      </div>
+    </div>
+
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="container">
+        <form role="search">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+          <label class="visually-hidden" for="q">Search products</label>
+          <input class="input" id="q" type="search" placeholder="Search toys, bags, yarn…" />
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Mobile drawer ===== -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-head">
+        <span class="logo">Viulhi</span>
+        <button class="icon-btn drawer-close" type="button" aria-label="Close menu" data-close-drawer>
+          <i class="hgi hgi-stroke hgi-cancel-01"></i>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Mobile">
+        <a href="index.html">Home <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="shop.html">Shop all <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="custom.html">Custom Orders <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="#contact">Contact <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+      </nav>
+      <p class="drawer-label">Shop by category</p>
+      <ul class="drawer-cats" data-category-links="icons"></ul>
+      <a class="btn btn-dark" href="account.html" data-account-link>Sign in</a>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- ===== The signed-in customer's requests (js/custom-requests.js) ===== -->
+    <section class="card my-requests" id="my-requests" aria-labelledby="myreq-title" hidden>
+      <div class="card-head">
+        <h2 id="myreq-title">Your requests</h2>
+        <p id="myreq-sub"></p>
+      </div>
+      <ul class="req-list" id="myreq-list"></ul>
+    </section>
+
+    <section class="custom-panel">
+      <!-- ===== Intro + contact ===== -->
+      <div class="custom-intro">
+        <span class="pill-label">Custom orders</span>
+        <h1>Let's make something <span class="accent">just for you</span></h1>
+        <p class="lead">Birthday toys, matching bags, baby gifts or a piece in your favourite colours. Tell us your idea and we'll crochet it by hand.</p>
+
+        <ul class="contact-list" aria-label="Other ways to reach us">
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-mail-01"></i></span>
+            <div><small>Email</small><a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a></div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-call"></i></span>
+            <div><small>Phone &amp; Viber</small><a href="tel:+9600000000">+960 000 0000</a></div>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-instagram"></i></span>
+            <div><small>Instagram</small><a href="https://instagram.com/" target="_blank" rel="noopener">@viulhi</a></div>
+          </li>
+        </ul>
+
+        <div class="how-card">
+          <h2>How it works</h2>
+          <ol class="how-steps">
+            <li><span class="how-num">01</span><div><strong>Share your idea</strong><span>Send the request form with a description and any photos.</span></div></li>
+            <li><span class="how-num">02</span><div><strong>Get a quote</strong><span>We reply with the price, colours and when it'll be ready.</span></div></li>
+            <li><span class="how-num">03</span><div><strong>Accept and pay</strong><span>Accept the quote, pay by bank transfer and upload your slip.</span></div></li>
+            <li><span class="how-num">04</span><div><strong>We crochet it</strong><span>We make your piece by hand and deliver it to you.</span></div></li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ===== Request form ===== -->
+      <div class="request-card">
+        <div id="request-form-wrap">
+          <h2>Custom order request</h2>
+          <p>No payment needed now. We'll send you a quote first.</p>
+
+          <form class="request-form" id="request-form" novalidate>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="cr-name">Full name</label>
+                <input class="input" id="cr-name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="cr-email">Email</label>
+                <input class="input" id="cr-email" type="email" inputmode="email" autocomplete="email" required />
+              </div>
+              <div class="field span-2">
+                <label class="field-label" for="cr-phone">Mobile number</label>
+                <div class="input-prefix">
+                  <span>+960</span>
+                  <input class="input" id="cr-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7XX XXXX" required />
+                </div>
+              </div>
+            </div>
+
+            <fieldset class="field">
+              <legend class="field-label">What would you like?</legend>
+              <div class="chips" id="cr-type" role="radiogroup" aria-label="What would you like?">
+                <label class="chip"><input type="radio" name="type" value="Amigurumi" /><i class="hgi hgi-stroke hgi-smile" aria-hidden="true"></i>Amigurumi</label>
+                <label class="chip"><input type="radio" name="type" value="Bag" /><i class="hgi hgi-stroke hgi-shopping-bag-01" aria-hidden="true"></i>Bag</label>
+                <label class="chip"><input type="radio" name="type" value="Wearable" /><i class="hgi hgi-stroke hgi-t-shirt" aria-hidden="true"></i>Wearable</label>
+                <label class="chip"><input type="radio" name="type" value="Home décor" /><i class="hgi hgi-stroke hgi-sofa-01" aria-hidden="true"></i>Home décor</label>
+                <label class="chip"><input type="radio" name="type" value="Baby gift" /><i class="hgi hgi-stroke hgi-baby-01" aria-hidden="true"></i>Baby gift</label>
+                <label class="chip"><input type="radio" name="type" value="Something else" /><i class="hgi hgi-stroke hgi-sparkles" aria-hidden="true"></i>Something else</label>
+              </div>
+            </fieldset>
+
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="cr-colours">Colours <span class="optional">(optional)</span></label>
+                <input class="input" id="cr-colours" placeholder="e.g. peach and cream" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="cr-budget">Budget <span class="optional">(optional)</span></label>
+                <div class="select">
+                  <select id="cr-budget">
+                    <option value="">Not sure yet</option>
+                    <option>Under MVR 300</option>
+                    <option>MVR 300 – 600</option>
+                    <option>MVR 600 – 1,000</option>
+                    <option>Over MVR 1,000</option>
+                  </select>
+                  <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="cr-details">Tell us about your piece</label>
+              <textarea class="textarea" id="cr-details" required placeholder="Size, style, who it's for, any names or details to include…"></textarea>
+            </div>
+
+            <div class="field" id="cr-photos-field">
+              <p class="field-label" id="cr-photos-label">Reference photos <span class="optional">(optional, up to 3)</span></p>
+              <label class="dropzone is-compact" id="cr-drop">
+                <input type="file" id="cr-photos" accept="image/*" multiple aria-labelledby="cr-photos-label" />
+                <span class="dropzone-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-image-add-01"></i></span>
+                <strong>Drag photos here or <u>browse</u></strong>
+                <small>Inspiration pictures, sketches or colour ideas · images up to 10 MB</small>
+              </label>
+              <div class="ref-photos" id="cr-photo-list"></div>
+            </div>
+
+            <button class="btn btn-primary btn-lg" type="submit" id="cr-submit">Send request <i class="hgi hgi-stroke hgi-arrow-right-01"></i></button>
+            <p class="request-note"><i class="hgi hgi-stroke hgi-message-01" aria-hidden="true"></i>We'll reply with a quote by email or SMS.</p>
+          </form>
+        </div>
+
+        <!-- Sent -->
+        <div class="request-done" id="request-done" hidden tabindex="-1">
+          <span class="empty-state-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-sent"></i></span>
+          <h2 id="done-title">Request sent!</h2>
+          <p>We'll look at your idea and get back to you with a quote by email or SMS.</p>
+          <span class="confirm-ref"><i class="hgi hgi-stroke hgi-sparkles" aria-hidden="true"></i>Request <span id="done-ref"></span></span>
+          <div class="confirm-actions">
+            <button class="btn btn-outline" type="button" id="cr-again">Send another request</button>
+            <a class="btn btn-outline" href="#my-requests" id="cr-follow" hidden>Follow your request</a>
+            <a class="btn btn-primary" href="shop.html">Browse the shop</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="11" cy="12" r="7.5" />
+              <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+            </svg>
+          </span>
+          Viulhi
+        </a>
+        <p>Handmade crochet and crochet supplies, made with love in the Maldives.</p>
+        <nav class="footer-social" aria-label="Social media">
+          <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="hgi hgi-stroke hgi-instagram"></i></a>
+          <a class="icon-btn" href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="hgi hgi-stroke hgi-tiktok"></i></a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="hgi hgi-stroke hgi-facebook-01"></i></a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul data-category-links></ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="orders.html">My orders</a></li>
+          <li><a href="#">Delivery information</a></li>
+          <li><a href="#">Returns &amp; exchanges</a></li>
+          <li><a href="custom.html">Custom orders</a></li>
+          <li><a href="terms.html">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h3>Visit &amp; contact</h3>
+        <ul>
+          <li><i class="hgi hgi-stroke hgi-location-01" aria-hidden="true"></i>Malé, Republic of Maldives</li>
+          <li><i class="hgi hgi-stroke hgi-call" aria-hidden="true"></i><a href="tel:+9600000000">+960 000 0000</a></li>
+          <li><i class="hgi hgi-stroke hgi-mail-01" aria-hidden="true"></i><a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="yr">2026</span> Viulhi. All prices in MVR and include 8% GST.</span>
+      <nav aria-label="Legal">
+        <a href="terms.html">Terms &amp; conditions</a>
+        <a href="#">Privacy policy</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

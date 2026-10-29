@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms &amp; Conditions | Viulhi</title>
+  <meta name="description" content="Terms and conditions for shopping with Viulhi, handmade crochet in the Maldives." />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) -->
+  <link rel="stylesheet" href="css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="css/layout.css?v=202610291533" />
+  <!-- Page -->
+  <link rel="stylesheet" href="css/legal.css?v=202610291533" />
+
+  <script src="js/theme.js?v=202610291533"></script>
+  <script src="js/config.js?v=202610291533" defer></script>
+  <script src="js/store-settings.js?v=202610291533" defer></script>
+  <script src="js/catalog.js?v=202610291533" defer></script>
+  <script src="js/cart.js?v=202610291533" defer></script>
+  <script src="js/auth.js?v=202610291533" defer></script>
+  <script src="js/main.js?v=202610291533" defer></script>
+</head>
+<body>
+
+  <div class="announcement">
+    Delivery across Malé, Hulhumalé &amp; the islands · <a href="custom.html">Custom orders open</a>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <i class="hgi hgi-stroke hgi-menu-01"></i>
+      </button>
+
+      <a href="index.html" class="logo" aria-label="Viulhi home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="11" cy="12" r="7.5" />
+            <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+          </svg>
+        </span>
+        Viulhi
+      </a>
+
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-menu" data-open="false">
+            <button type="button" aria-expanded="false" aria-controls="shop-menu">Shop <i class="hgi hgi-stroke hgi-arrow-down-01"></i></button>
+            <div class="nav-menu" id="shop-menu">
+              <ul data-category-links="icons"></ul>
+            </div>
+          </li>
+          <li><a href="custom.html">Custom Orders</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+        </button>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
+          <i class="hgi hgi-stroke hgi-moon-02 i-moon"></i>
+          <i class="hgi hgi-stroke hgi-sun-03 i-sun"></i>
+        </button>
+        <a class="icon-btn cart-btn" href="cart.html" aria-label="Shopping cart, empty">
+          <i class="hgi hgi-stroke hgi-shopping-cart-01"></i>
+          <span class="count-badge" id="cart-count" hidden></span>
+        </a>
+        <a class="btn btn-dark btn-sm" href="account.html" data-account-link>Sign in</a>
+      </div>
+    </div>
+
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="container">
+        <form role="search">
+          <i class="hgi hgi-stroke hgi-search-01"></i>
+          <label class="visually-hidden" for="q">Search products</label>
+          <input class="input" id="q" type="search" placeholder="Search toys, bags, yarn…" />
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Mobile drawer ===== -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer-head">
+        <span class="logo">Viulhi</span>
+        <button class="icon-btn drawer-close" type="button" aria-label="Close menu" data-close-drawer>
+          <i class="hgi hgi-stroke hgi-cancel-01"></i>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Mobile">
+        <a href="index.html">Home <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="shop.html">Shop all <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="custom.html">Custom Orders <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+        <a href="#contact">Contact <i class="hgi hgi-stroke hgi-arrow-right-01"></i></a>
+      </nav>
+      <p class="drawer-label">Shop by category</p>
+      <ul class="drawer-cats" data-category-links="icons"></ul>
+      <a class="btn btn-dark" href="account.html" data-account-link>Sign in</a>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="page-hero">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms &amp; Conditions</h1>
+      <p>Last updated: 21 October 2026</p>
+    </section>
+
+    <!-- DRAFT: placeholder terms. Have these reviewed and adjusted to your actual policies before launch. -->
+    <div class="legal">
+      <nav class="legal-toc" aria-label="On this page">
+        <p>On this page</p>
+        <a href="#about">About these terms</a>
+        <a href="#orders">Orders</a>
+        <a href="#prices">Prices &amp; GST</a>
+        <a href="#payment">Payment</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#handmade">Handmade items</a>
+        <a href="#custom">Custom orders</a>
+        <a href="#returns">Returns &amp; exchanges</a>
+        <a href="#safety">Care &amp; safety</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#law">Changes &amp; governing law</a>
+        <a href="#contact-us">Contact</a>
+      </nav>
+
+      <article class="prose">
+        <section id="about">
+          <h2>About these terms</h2>
+          <p>These terms apply to every purchase made from Viulhi through our website, social media or in person. By placing an order, you agree to them. Please read them before you buy.</p>
+        </section>
+
+        <section id="orders">
+          <h2>Orders</h2>
+          <p>An order is confirmed once we've accepted it and received payment. We'll let you know by message or email. We may decline or cancel an order if an item is unavailable or a price was listed in error, and we'll refund anything you've paid in full.</p>
+        </section>
+
+        <section id="prices">
+          <h2>Prices &amp; GST</h2>
+          <p>All prices are in Maldivian Rufiyaa (MVR). Unless stated otherwise, prices shown on the shop <strong>include 8% Goods and Services Tax (GST)</strong>. Your order summary and invoice show the price before GST, the GST amount and the total separately.</p>
+          <p>Delivery fees are shown separately at checkout.</p>
+        </section>
+
+        <section id="payment">
+          <h2>Payment</h2>
+          <p>The available payment methods are shown at checkout. If you pay by bank transfer, please include your order number as the reference and send us the transfer slip. We start preparing your order once payment is confirmed.</p>
+        </section>
+
+        <section id="delivery">
+          <h2>Delivery</h2>
+          <ul>
+            <li><strong>Malé, Hulhumalé and Villimalé:</strong> delivered to your door by our delivery partner.</li>
+            <li><strong>Other islands:</strong> sent by ferry, speedboat or cargo service to the jetty or contact you choose. Transport charges are paid by the customer.</li>
+          </ul>
+          <p>Delivery times are estimates. Weather and transport schedules between islands can cause delays that are outside our control. Once a parcel has been handed to an inter-island transport service, we'll share the details so you can track it.</p>
+        </section>
+
+        <section id="handmade">
+          <h2>Handmade items</h2>
+          <p>Every piece is made by hand, so small differences in size, colour and stitch pattern are normal. Colours may also look slightly different on screen. These differences are part of each item's character, not defects.</p>
+        </section>
+
+        <section id="custom">
+          <h2>Custom orders</h2>
+          <p>For custom pieces, we'll agree the design, colours, price and expected completion date with you before we start, and send you a quotation. An advance payment may be required. Because custom items are made just for you, they can't be returned unless they arrive damaged or differ from what we agreed.</p>
+        </section>
+
+        <section id="returns">
+          <h2>Returns &amp; exchanges</h2>
+          <p>If an item arrives damaged or isn't what you ordered, contact us within <strong>7 days</strong> of receiving it with photos, and we'll repair, replace or refund it.</p>
+          <p>Ready-made items in unused condition can be exchanged within 7 days. Return delivery costs for exchanges are paid by the customer. Yarn and supplies can only be returned unopened.</p>
+        </section>
+
+        <section id="safety">
+          <h2>Care &amp; safety</h2>
+          <p>Toys with small parts such as buttons or safety eyes aren't suitable for children under 3 unless labelled otherwise. Always supervise young children. Follow the care instructions provided with each item: most pieces should be hand-washed in cold water and dried flat in the shade.</p>
+        </section>
+
+        <section id="privacy">
+          <h2>Privacy</h2>
+          <p>We only use your name, phone number, email and address to process and deliver your order and to contact you about it. We never sell your details. If you agree to hear from us, we may send occasional messages about new products, and you can opt out at any time.</p>
+        </section>
+
+        <section id="law">
+          <h2>Changes &amp; governing law</h2>
+          <p>We may update these terms from time to time. The version on this page when you place your order applies to that order. These terms are governed by the laws of the Republic of Maldives.</p>
+        </section>
+
+        <section id="contact-us">
+          <h2>Contact</h2>
+          <p>Questions about these terms or an order? Email <a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a> or message us on social media.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="11" cy="12" r="7.5" />
+              <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+            </svg>
+          </span>
+          Viulhi
+        </a>
+        <p>Handmade crochet and crochet supplies, made with love in the Maldives.</p>
+        <nav class="footer-social" aria-label="Social media">
+          <a class="icon-btn" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="hgi hgi-stroke hgi-instagram"></i></a>
+          <a class="icon-btn" href="https://tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="hgi hgi-stroke hgi-tiktok"></i></a>
+          <a class="icon-btn" href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="hgi hgi-stroke hgi-facebook-01"></i></a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h3>Shop</h3>
+        <ul data-category-links></ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Help</h3>
+        <ul>
+          <li><a href="orders.html">My orders</a></li>
+          <li><a href="#">Delivery information</a></li>
+          <li><a href="#">Returns &amp; exchanges</a></li>
+          <li><a href="custom.html">Custom orders</a></li>
+          <li><a href="terms.html">Terms &amp; conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h3>Visit &amp; contact</h3>
+        <ul>
+          <li><i class="hgi hgi-stroke hgi-location-01" aria-hidden="true"></i>Malé, Republic of Maldives</li>
+          <li><i class="hgi hgi-stroke hgi-call" aria-hidden="true"></i><a href="tel:+9600000000">+960 000 0000</a></li>
+          <li><i class="hgi hgi-stroke hgi-mail-01" aria-hidden="true"></i><a href="mailto:hello@viulhi.mv">hello@viulhi.mv</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="yr">2026</span> Viulhi. All prices in MVR and include 8% GST.</span>
+      <nav aria-label="Legal">
+        <a href="terms.html" aria-current="page">Terms &amp; conditions</a>
+        <a href="#">Privacy policy</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
