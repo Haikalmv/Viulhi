@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Store profile | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/settings.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="settings">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i><span aria-current="page">Store profile</span>
+            </nav>
+            <h1>Store profile</h1>
+            <p>Your brand, contact details, bank accounts and delivery fees. Changes show on the website straight away.</p>
+          </div>
+          <div class="head-actions">
+            <a class="btn btn-outline" href="../index.html" target="_blank" rel="noopener"><i class="hgi hgi-stroke hgi-store-02" aria-hidden="true"></i>View store</a>
+          </div>
+        </div>
+
+        <div class="tabs settings-tabs" role="tablist" aria-label="Store profile" id="s-tabs">
+          <button class="tab" type="button" role="tab" data-tab="brand" aria-controls="tab-brand"><i class="hgi hgi-stroke hgi-paint-board" aria-hidden="true"></i>Branding</button>
+          <button class="tab" type="button" role="tab" data-tab="contact" aria-controls="tab-contact"><i class="hgi hgi-stroke hgi-call" aria-hidden="true"></i>Contact &amp; social</button>
+          <button class="tab" type="button" role="tab" data-tab="address" aria-controls="tab-address"><i class="hgi hgi-stroke hgi-location-01" aria-hidden="true"></i>Address &amp; business</button>
+          <button class="tab" type="button" role="tab" data-tab="bank" aria-controls="tab-bank"><i class="hgi hgi-stroke hgi-bank" aria-hidden="true"></i>Banking</button>
+          <button class="tab" type="button" role="tab" data-tab="delivery" aria-controls="tab-delivery"><i class="hgi hgi-stroke hgi-delivery-truck-01" aria-hidden="true"></i>Delivery &amp; tax</button>
+        </div>
+
+        <!-- ===== Branding ===== -->
+        <form class="settings-panel" id="tab-brand" role="tabpanel" data-panel="brand" novalidate>
+          <section class="card">
+            <div class="card-head"><h2>Store</h2></div>
+            <div class="form-stack">
+              <div class="field-grid">
+                <div class="field">
+                  <label class="field-label" for="sb-name">Store name</label>
+                  <input class="input" id="sb-name" maxlength="40" required />
+                </div>
+                <div class="field">
+                  <span class="field-label">Logo <span class="optional">(optional)</span></span>
+                  <div class="logo-pick">
+                    <span class="logo-pick-preview" id="sb-logo-preview"></span>
+                    <label class="btn btn-outline btn-sm"><input type="file" id="sb-logo" accept="image/*" class="visually-hidden" /><i class="hgi hgi-stroke hgi-image-upload" aria-hidden="true"></i>Upload</label>
+                    <button class="link-btn link-btn-danger" type="button" id="sb-logo-remove">Use the yarn ball</button>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="sb-tagline">Tagline</label>
+                <textarea class="textarea" id="sb-tagline" rows="2" maxlength="160"></textarea>
+                <p class="field-hint">Shown in the footer under your logo.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-head">
+              <h2>Brand colours</h2>
+              <p>Four colours set the whole look, in light and dark mode. You'll see changes here as you pick.</p>
+            </div>
+            <div class="colour-grid" id="sb-colours"></div>
+            <div class="brand-preview" id="sb-preview">
+              <div>
+                <span class="logo" id="sb-preview-logo"></span>
+                <p>Handmade crochet, made with love.</p>
+              </div>
+              <div class="brand-preview-actions">
+                <span class="badge badge-new">New</span>
+                <span class="btn btn-primary btn-sm">Add to cart</span>
+                <span class="btn btn-dark btn-sm">Sign in</span>
+              </div>
+            </div>
+            <div class="card-actions card-actions-split">
+              <button class="link-btn" type="button" id="sb-reset"><i class="hgi hgi-stroke hgi-refresh" aria-hidden="true"></i>Reset to the original colours</button>
+            </div>
+          </section>
+          <div class="save-bar"><span>The browser tab icon doesn't change with these colours.</span><div><button class="btn btn-primary" type="submit">Save branding</button></div></div>
+        </form>
+
+        <!-- ===== Contact & social ===== -->
+        <form class="settings-panel" id="tab-contact" role="tabpanel" data-panel="contact" novalidate hidden>
+          <section class="card">
+            <div class="card-head">
+              <h2>Contact methods</h2>
+              <p>Shown in the footer and used for "Call" and "Viber" links.</p>
+            </div>
+            <div class="repeat-list" id="sc-contacts"></div>
+            <button class="btn btn-outline btn-sm add-row" type="button" id="sc-add-contact"><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add contact method</button>
+            <div class="field sc-hours">
+              <label class="field-label" for="sc-hours">Reply hours <span class="optional">(optional)</span></label>
+              <input class="input" id="sc-hours" placeholder="e.g. Saturday to Thursday, 9am to 9pm" />
+            </div>
+          </section>
+          <section class="card">
+            <div class="card-head">
+              <h2>Social media</h2>
+              <p>Icons in the footer link here.</p>
+            </div>
+            <div class="repeat-list" id="sc-socials"></div>
+            <button class="btn btn-outline btn-sm add-row" type="button" id="sc-add-social"><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add social link</button>
+          </section>
+          <div class="save-bar"><span>Customers see these on every page.</span><div><button class="btn btn-primary" type="submit">Save contact details</button></div></div>
+        </form>
+
+        <!-- ===== Address & business ===== -->
+        <form class="settings-panel" id="tab-address" role="tabpanel" data-panel="address" novalidate hidden>
+          <section class="card">
+            <div class="card-head"><h2>Address</h2></div>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="sa-line1">Building or house <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-line1" placeholder="e.g. H. Coral View" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-line2">Street and floor <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-line2" placeholder="e.g. Majeedhee Magu, 3rd floor" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-island">Island or city</label>
+                <input class="input" id="sa-island" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-atoll">Atoll</label>
+                <div class="select"><select id="sa-atoll"></select><i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i></div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-postcode">Postcode <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-postcode" inputmode="numeric" placeholder="e.g. 20026" />
+              </div>
+              <div class="field span-2">
+                <label class="switch"><input type="checkbox" id="sa-show" /> Show the address on the website</label>
+                <p class="field-hint">Turn this off if you work from home and don't take walk-in visitors.</p>
+              </div>
+            </div>
+          </section>
+          <section class="card">
+            <div class="card-head">
+              <h2>Business details</h2>
+              <p>For invoices and receipts. Not shown on the website.</p>
+            </div>
+            <div class="field-grid">
+              <div class="field span-2">
+                <label class="field-label" for="sa-legal">Registered business name <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-legal" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-reg">Registration number <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-reg" placeholder="e.g. SP12345/2026" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="sa-tin">GST TIN <span class="optional">(optional)</span></label>
+                <input class="input" id="sa-tin" placeholder="Your MIRA taxpayer number" />
+              </div>
+            </div>
+          </section>
+          <div class="save-bar"><span>Your business details stay private.</span><div><button class="btn btn-primary" type="submit">Save address</button></div></div>
+        </form>
+
+        <!-- ===== Banking ===== -->
+        <form class="settings-panel" id="tab-bank" role="tabpanel" data-panel="bank" novalidate hidden>
+          <section class="card">
+            <div class="card-head">
+              <h2>Bank accounts for transfers</h2>
+              <p>Customers choose one of these on the payment page. Check the numbers carefully.</p>
+            </div>
+            <div class="repeat-list" id="sk-banks"></div>
+            <button class="btn btn-outline btn-sm add-row" type="button" id="sk-add"><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add bank account</button>
+          </section>
+          <div class="save-bar"><span>At least one account must be shown at checkout.</span><div><button class="btn btn-primary" type="submit">Save bank accounts</button></div></div>
+        </form>
+
+        <!-- ===== Delivery & tax ===== -->
+        <form class="settings-panel" id="tab-delivery" role="tabpanel" data-panel="delivery" novalidate hidden>
+          <section class="card">
+            <div class="card-head">
+              <h2>Delivery areas</h2>
+              <p>Leave the fee empty when transport is paid on collection, like ferry or cargo.</p>
+            </div>
+            <div class="zone-row zone-head" aria-hidden="true"><span>Area</span><span>Fee (MVR)</span><span>Note for customers</span><span></span></div>
+            <div class="repeat-list" id="sd-zones"></div>
+            <button class="btn btn-outline btn-sm add-row" type="button" id="sd-add"><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add area</button>
+          </section>
+          <section class="card">
+            <div class="card-head">
+              <h2>GST</h2>
+              <p>Product prices are entered before GST. The shop adds it automatically.</p>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="sd-gst">GST rate</label>
+                <div class="input-suffix"><input class="input" id="sd-gst" type="number" min="0" max="50" step="0.5" inputmode="decimal" required /><span>%</span></div>
+              </div>
+              <div class="field">
+                <span class="field-label">Prices in the shop</span>
+                <label class="switch switch-field"><input type="checkbox" id="sd-incl" /> Show prices including GST</label>
+              </div>
+            </div>
+          </section>
+          <div class="save-bar"><span>Orders already placed keep their original fees and GST.</span><div><button class="btn btn-primary" type="submit">Save delivery &amp; tax</button></div></div>
+        </form>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

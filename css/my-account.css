@@ -1,0 +1,126 @@
+/* =========================================================================
+   MY ACCOUNT (overview) + PROFILE & ADDRESS
+   ========================================================================= */
+
+/* ---- Overview ---------------------------------------------------------- */
+.acct-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+.acct-side { display: grid; gap: var(--space-5); }
+.acct-main { display: grid; gap: var(--space-5); }
+
+.acct-profile {
+  display: flex; flex-direction: column; align-items: flex-start;
+  background:
+    radial-gradient(90% 60% at 100% 0%, var(--color-glow-pink), transparent 70%),
+    var(--color-surface);
+}
+.acct-profile h2 { margin-top: var(--space-5); font-size: var(--text-2xl); }
+.acct-profile > p { font-size: var(--text-sm); color: var(--color-text-muted); overflow-wrap: anywhere; }
+.acct-profile .meta-list { width: 100%; margin: var(--space-5) 0; padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+.acct-profile .meta-list div { grid-template-columns: 110px minmax(0, 1fr); }
+
+.acct-address { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; font-size: var(--text-sm); }
+.acct-address strong { font-weight: var(--weight-semibold); }
+.acct-address span { color: var(--color-text-muted); }
+.acct-muted { color: var(--color-text-muted); margin-bottom: var(--space-4); }
+
+.acct-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.acct-stats .stat-card { padding: var(--space-4) var(--space-5); }
+
+/* Latest order: status track + items + total */
+.latest-foot {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-5);
+  margin-top: var(--space-8); padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+.latest-foot .order-thumbs { margin-top: 0; }
+.latest-side { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
+.latest-side .order-actions { flex-wrap: nowrap; }
+
+/* Order history rows */
+.acct-orders li + li { border-top: 1px solid var(--color-border); }
+.acct-orders a {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto 20px;
+  align-items: center; gap: var(--space-4);
+  padding: var(--space-4) var(--space-2);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration) var(--ease);
+}
+.acct-orders a:hover { background: var(--color-bg); }
+.acct-order-ref { display: flex; flex-direction: column; line-height: var(--leading-snug); }
+.acct-order-ref strong { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+.acct-order-ref small { font-size: var(--text-xs); color: var(--color-text-muted); }
+.acct-order-total { font-weight: var(--weight-bold); font-size: var(--text-sm); white-space: nowrap; min-width: 96px; text-align: right; }
+.acct-orders i { font-size: 18px; color: var(--color-text-muted); }
+
+/* Custom requests list: css/custom-requests.css */
+#requests { scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+#req-none { margin: 0; font-size: var(--text-sm); }
+
+.acct-empty { padding-block: var(--space-12); }
+.acct-empty p { margin-bottom: var(--space-6); }
+
+.acct-favs { padding-top: var(--space-16); }
+
+/* ---- Profile & address ------------------------------------------------ */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: start;
+  max-width: 1040px;
+}
+.profile-nav { position: sticky; top: calc(var(--header-h) + var(--space-6)); display: grid; gap: 2px; }
+.profile-nav a {
+  display: flex; align-items: center; gap: var(--space-3);
+  height: 44px; padding: 0 var(--space-4);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-sm); font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+.profile-nav a:hover { background: var(--color-surface-muted); color: var(--color-text); }
+.profile-nav i { font-size: 19px; }
+
+.profile-forms { display: grid; gap: var(--space-5); }
+.profile-forms .card { padding: var(--space-8); scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+.profile-forms .form-error { margin-top: var(--space-5); }
+
+.avatar-pick {
+  display: flex; align-items: center; gap: var(--space-6);
+  margin-bottom: var(--space-6); padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.avatar-pick fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.avatar-pick .chip { padding-left: var(--space-2); }
+.chip-swatch { width: 24px; height: 24px; }
+
+.text-link { color: var(--color-primary-text); font-weight: var(--weight-semibold); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 960px) {
+  .acct-layout { grid-template-columns: minmax(0, 1fr); }
+  .acct-side { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .profile-layout { grid-template-columns: minmax(0, 1fr); }
+  .profile-nav { position: static; display: flex; overflow-x: auto; scrollbar-width: none; gap: var(--space-2); }
+  .profile-nav a { flex-shrink: 0; border: 1px solid var(--color-border-strong); height: 40px; }
+}
+@media (max-width: 640px) {
+  .page-head-row .segmented { display: flex; width: 100%; }
+  .page-head-row .segmented a { flex: 1; justify-content: center; padding: 0 var(--space-2); }
+  .page-head-row .segmented i { display: none; }
+  .acct-side { grid-template-columns: minmax(0, 1fr); }
+  .acct-stats { gap: var(--space-2); }
+  .acct-stats .stat-card { padding: var(--space-3) var(--space-4); }
+  .acct-stats .stat-label { font-size: var(--text-xs); }
+  .acct-stats .stat-value { font-size: var(--text-2xl); }
+  .acct-orders a { grid-template-columns: minmax(0, 1fr) auto; }
+  .acct-orders .badge { grid-row: 2; justify-self: start; }
+  .acct-orders i { display: none; }
+  .latest-side { width: 100%; justify-content: space-between; }
+  .profile-forms .card { padding: var(--space-5); }
+  .avatar-pick { flex-direction: column; align-items: flex-start; }
+}

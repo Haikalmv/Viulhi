@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expenses | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/expenses.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="expenses">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i><span aria-current="page">Expenses</span>
+            </nav>
+            <h1>Expenses</h1>
+            <p>Receipts, supplier bills and money your team spent for the shop, with the GST you paid.</p>
+          </div>
+          <div class="head-actions">
+            <button class="btn btn-outline" type="button" id="export-btn"><i class="hgi hgi-stroke hgi-download-01" aria-hidden="true"></i>Export CSV</button>
+            <button class="btn btn-primary" type="button" id="add-btn" data-manage><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add expense</button>
+          </div>
+        </div>
+
+        <div class="dash-stats" id="x-stats"></div>
+
+        <div class="expense-layout">
+          <section class="card list-card" aria-label="Expense list">
+            <div class="list-toolbar">
+              <div class="input-search">
+                <i class="hgi hgi-stroke hgi-search-01" aria-hidden="true"></i>
+                <label class="visually-hidden" for="x-q">Search expenses</label>
+                <input class="input" id="x-q" type="search" placeholder="Vendor or description" />
+              </div>
+              <div class="select">
+                <label class="visually-hidden" for="x-period">Period</label>
+                <select id="x-period">
+                  <option value="month">This month</option>
+                  <option value="last-month">Last month</option>
+                  <option value="year">This year</option>
+                  <option value="">All time</option>
+                </select>
+                <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+              </div>
+              <div class="select">
+                <label class="visually-hidden" for="x-cat">Category</label>
+                <select id="x-cat"><option value="">All categories</option></select>
+                <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+              </div>
+              <div class="select">
+                <label class="visually-hidden" for="x-status">Status</label>
+                <select id="x-status">
+                  <option value="">Any status</option>
+                  <option value="paid">Paid</option>
+                  <option value="unpaid">Unpaid / owed</option>
+                </select>
+                <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Filter by type" id="x-tabs">
+              <button class="tab" type="button" role="tab" data-tab="all">All <span class="tab-count"></span></button>
+              <button class="tab" type="button" role="tab" data-tab="expense">Expenses <span class="tab-count"></span></button>
+              <button class="tab" type="button" role="tab" data-tab="bill">Bills <span class="tab-count"></span></button>
+              <button class="tab" type="button" role="tab" data-tab="reimbursement">Reimbursements <span class="tab-count"></span></button>
+            </div>
+            <div class="table-wrap"><table class="table" id="x-table"></table></div>
+            <div class="list-empty" id="x-empty" hidden>
+              <i class="hgi hgi-stroke hgi-invoice-01" aria-hidden="true"></i>
+              <strong id="x-empty-title">No expenses here</strong>
+              <span id="x-empty-text">Try another period or filter.</span>
+            </div>
+            <div class="pager" id="x-pager"></div>
+          </section>
+
+          <section class="card" aria-labelledby="x-cat-title">
+            <div class="card-head">
+              <h2 id="x-cat-title">By category</h2>
+              <p id="x-cat-period"></p>
+            </div>
+            <ul class="cat-breakdown" id="x-breakdown"></ul>
+          </section>
+        </div>
+
+        <dialog class="sheet" id="x-sheet" aria-labelledby="xs-title">
+          <div class="sheet-head">
+            <div>
+              <h2 id="xs-title">Add expense</h2>
+              <p id="xs-sub"></p>
+            </div>
+            <button class="icon-btn" type="button" data-sheet-close aria-label="Close"><i class="hgi hgi-stroke hgi-cancel-01"></i></button>
+          </div>
+          <form class="sheet-body" id="xs-form" novalidate>
+            <fieldset class="field">
+              <legend class="field-label">Type</legend>
+              <div class="chips" id="xs-type">
+                <label class="chip"><input type="radio" name="type" value="expense" /><i class="hgi hgi-stroke hgi-invoice-01" aria-hidden="true"></i>Expense</label>
+                <label class="chip"><input type="radio" name="type" value="bill" /><i class="hgi hgi-stroke hgi-file-01" aria-hidden="true"></i>Bill</label>
+                <label class="chip"><input type="radio" name="type" value="reimbursement" /><i class="hgi hgi-stroke hgi-user-circle" aria-hidden="true"></i>Reimbursement</label>
+              </div>
+              <p class="field-hint" id="xs-type-hint"></p>
+            </fieldset>
+
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="xs-date">Date</label>
+                <input class="input" id="xs-date" type="date" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="xs-vendor" id="xs-vendor-label">Paid to</label>
+                <input class="input" id="xs-vendor" placeholder="e.g. Yarn Shop Malé" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="xs-cat">Category</label>
+                <div class="select">
+                  <select id="xs-cat" required></select>
+                  <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="xs-method">Paid with</label>
+                <div class="select">
+                  <select id="xs-method"></select>
+                  <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="field span-2">
+                <label class="field-label" for="xs-desc">What was it for?</label>
+                <input class="input" id="xs-desc" placeholder="e.g. 40 balls of milk cotton yarn" required />
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="xs-amount">Total amount</label>
+                <div class="input-prefix"><span>MVR</span><input class="input" id="xs-amount" type="number" min="0" step="0.01" inputmode="decimal" required /></div>
+              </div>
+              <div class="field">
+                <span class="field-label">GST</span>
+                <label class="switch switch-field"><input type="checkbox" id="xs-gst" checked /> <span>Includes <span data-gst></span></span></label>
+              </div>
+              <p class="field-hint span-2 gst-line" id="xs-gst-line"></p>
+
+              <div class="field" data-for="bill">
+                <label class="field-label" for="xs-due">Due date <span class="optional">(optional)</span></label>
+                <input class="input" id="xs-due" type="date" />
+              </div>
+              <div class="field" data-for="reimbursement">
+                <label class="field-label" for="xs-paidby">Paid by</label>
+                <div class="select">
+                  <select id="xs-paidby"></select>
+                  <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                </div>
+              </div>
+              <fieldset class="field" id="xs-status-wrap">
+                <legend class="field-label">Status</legend>
+                <div class="chips">
+                  <label class="chip"><input type="radio" name="status" value="paid" /><span id="xs-paid-label">Paid</span></label>
+                  <label class="chip"><input type="radio" name="status" value="unpaid" /><span id="xs-unpaid-label">Unpaid</span></label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Receipt or invoice <span class="optional">(optional)</span></span>
+              <label class="dropzone is-compact" id="xs-drop">
+                <input type="file" id="xs-file" accept="application/pdf,image/*" />
+                <span class="dropzone-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-upload-01"></i></span>
+                <strong>Drop a file or <u>browse</u></strong>
+                <small>PDF or image, up to 10 MB</small>
+              </label>
+              <div class="file-chip" id="xs-file-chip" hidden>
+                <span class="file-thumb" aria-hidden="true"><i class="hgi hgi-stroke hgi-pdf-01"></i></span>
+                <span class="file-info"><strong id="xs-file-name"></strong><span><i class="hgi hgi-stroke hgi-checkmark-circle-02" aria-hidden="true"></i><em id="xs-file-size"></em></span></span>
+                <button class="icon-btn" type="button" id="xs-file-remove" aria-label="Remove file"><i class="hgi hgi-stroke hgi-delete-02"></i></button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="xs-notes">Notes <span class="optional">(optional)</span></label>
+              <textarea class="textarea" id="xs-notes" rows="2"></textarea>
+            </div>
+          </form>
+          <div class="sheet-foot">
+            <button class="link-btn link-btn-danger sheet-delete" type="button" id="xs-delete" hidden><i class="hgi hgi-stroke hgi-delete-02" aria-hidden="true"></i>Delete</button>
+            <button class="btn btn-outline" type="button" data-sheet-close>Cancel</button>
+            <button class="btn btn-dark" type="submit" form="xs-form" data-manage>Save</button>
+          </div>
+        </dialog>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

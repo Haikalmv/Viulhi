@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customers | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/customers.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="customers">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i><span aria-current="page">Customers</span>
+            </nav>
+            <h1>Customers</h1>
+          </div>
+          <div class="head-actions">
+            <button class="btn btn-outline" type="button" id="export-btn"><i class="hgi hgi-stroke hgi-download-01" aria-hidden="true"></i>Export CSV</button>
+          </div>
+        </div>
+
+        <div class="dash-stats" id="c-stats"></div>
+
+        <section class="card list-card" aria-label="Customer list">
+          <div class="list-toolbar">
+            <div class="input-search">
+              <i class="hgi hgi-stroke hgi-search-01" aria-hidden="true"></i>
+              <label class="visually-hidden" for="c-q">Search customers</label>
+              <input class="input" id="c-q" type="search" placeholder="Name, email or phone" />
+            </div>
+            <div class="select">
+              <label class="visually-hidden" for="c-sort">Sort</label>
+              <select id="c-sort">
+                <option value="newest">Newest first</option>
+                <option value="spent">Most spent</option>
+                <option value="orders">Most orders</option>
+                <option value="recent">Ordered recently</option>
+                <option value="name">Name A–Z</option>
+              </select>
+              <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Filter customers" id="c-tabs">
+            <button class="tab" type="button" role="tab" data-tab="all">All <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="buyers">Ordered <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="repeat">Repeat buyers <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="none">No orders yet <span class="tab-count"></span></button>
+          </div>
+
+          <div class="table-wrap"><table class="table" id="c-table"></table></div>
+          <div class="list-empty" id="c-empty" hidden>
+            <i class="hgi hgi-stroke hgi-user-group" aria-hidden="true"></i>
+            <strong id="c-empty-title">No customers here</strong>
+            <span id="c-empty-text">Try another search or filter.</span>
+          </div>
+          <div class="pager" id="c-pager"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

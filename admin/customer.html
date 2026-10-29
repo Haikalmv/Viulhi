@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Customer | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/customer.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="customers">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <a href="customers.html">Customers</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <span aria-current="page" id="crumb"></span>
+            </nav>
+            <div class="person person-head">
+              <span id="cu-avatar"></span>
+              <span><h1 id="cu-name"></h1><p id="cu-sub"></p></span>
+            </div>
+          </div>
+          <div class="head-actions" id="cu-actions"></div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-main">
+            <div class="dash-stats" id="cu-stats"></div>
+            <section class="card list-card" aria-labelledby="cu-orders-title">
+              <div class="card-head"><h2 id="cu-orders-title">Orders</h2></div>
+              <div class="table-wrap"><table class="table" id="cu-orders"></table></div>
+              <div class="list-empty" id="cu-orders-empty" hidden>
+                <i class="hgi hgi-stroke hgi-shopping-bag-01" aria-hidden="true"></i>
+                <strong>No orders yet</strong>
+                This customer hasn't placed an order.
+              </div>
+            </section>
+          </div>
+
+          <div class="detail-side">
+            <section class="card" aria-labelledby="cu-contact-title">
+              <div class="card-head"><h2 id="cu-contact-title">Contact</h2></div>
+              <dl class="meta-list" id="cu-contact"></dl>
+            </section>
+            <section class="card" aria-labelledby="cu-addr-title">
+              <div class="card-head"><h2 id="cu-addr-title">Delivery address</h2></div>
+              <dl class="meta-list" id="cu-address"></dl>
+            </section>
+            <section class="card" aria-labelledby="cu-favs-title">
+              <div class="card-head"><h2 id="cu-favs-title">Favourites</h2></div>
+              <ul class="task-list" id="cu-favs"></ul>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

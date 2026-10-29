@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/login.js?v=202610291533" defer></script>
+</head>
+<body class="admin">
+  <div class="login-page">
+    <div class="login-form-side">
+      <a class="logo" href="../index.html" id="login-logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="11" cy="12" r="7.5" />
+            <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+          </svg>
+        </span>
+        <span id="login-store">Viulhi</span><span class="side-tag">Admin</span>
+      </a>
+
+      <main class="login-box">
+        <span class="eyebrow">Admin portal</span>
+        <h1 id="login-title">Welcome back</h1>
+        <p id="login-intro">Sign in to manage orders, products and your store.</p>
+
+        <!-- Sign in -->
+        <form id="form-signin" novalidate hidden>
+          <div class="field">
+            <label class="field-label" for="in-email">Work email</label>
+            <input class="input" id="in-email" type="email" autocomplete="username" inputmode="email" required />
+          </div>
+          <div class="field">
+            <div class="field-label-row">
+              <label class="field-label" for="in-password">Password</label>
+              <button class="link-btn" type="button" data-mode="forgot">Forgot password?</button>
+            </div>
+            <div class="input-password">
+              <input class="input" id="in-password" type="password" autocomplete="current-password" required />
+              <button class="icon-btn" type="button" data-toggle-password aria-label="Show password"><i class="hgi hgi-stroke hgi-view"></i></button>
+            </div>
+          </div>
+          <p class="form-error" role="alert" hidden><i class="hgi hgi-stroke hgi-alert-circle" aria-hidden="true"></i><span></span></p>
+          <button class="btn btn-dark btn-lg" type="submit">Sign in <i class="hgi hgi-stroke hgi-arrow-right-01"></i></button>
+        </form>
+
+        <!-- First run: create the owner account -->
+        <form id="form-setup" novalidate hidden>
+          <div class="callout callout-tint">
+            <i class="hgi hgi-stroke hgi-crown" aria-hidden="true"></i>
+            <div>
+              <strong>Set up the owner account</strong>
+              <p>This is the first sign-in for this store. The owner has full access and can add the rest of the team.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="su-name">Full name</label>
+            <input class="input" id="su-name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="su-email">Work email</label>
+            <input class="input" id="su-email" type="email" autocomplete="username" inputmode="email" required />
+          </div>
+          <div class="field">
+            <label class="field-label" for="su-password">Password</label>
+            <div class="input-password">
+              <input class="input" id="su-password" type="password" autocomplete="new-password" required />
+              <button class="icon-btn" type="button" data-toggle-password aria-label="Show password"><i class="hgi hgi-stroke hgi-view"></i></button>
+            </div>
+            <p class="field-hint">At least 10 characters. This account can change everything, so make it strong.</p>
+          </div>
+          <p class="form-error" role="alert" hidden><i class="hgi hgi-stroke hgi-alert-circle" aria-hidden="true"></i><span></span></p>
+          <button class="btn btn-dark btn-lg" type="submit">Create owner account <i class="hgi hgi-stroke hgi-arrow-right-01"></i></button>
+        </form>
+
+        <!-- Forgot password -->
+        <form id="form-forgot" novalidate hidden>
+          <div class="field">
+            <label class="field-label" for="fp-email">Work email</label>
+            <input class="input" id="fp-email" type="email" autocomplete="username" inputmode="email" required />
+          </div>
+          <button class="btn btn-dark btn-lg" type="submit">Send reset link <i class="hgi hgi-stroke hgi-mail-send-01"></i></button>
+          <p class="account-switch">Remembered it? <button type="button" data-mode="signin">Back to sign in</button></p>
+        </form>
+
+        <div class="account-sent" id="forgot-sent" tabindex="-1" hidden>
+          <span class="account-sent-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-mail-open"></i></span>
+          <p>If <strong id="sent-email"></strong> belongs to a team member, a link to reset the password is on its way. It works for <span data-reset-minutes></span> minutes.</p>
+          <div class="callout" id="demo-reset" hidden>
+            <i class="hgi hgi-stroke hgi-information-circle" aria-hidden="true"></i>
+            <div>
+              <strong>Preview: emails aren't sent yet</strong>
+              <p>Until the email service is connected, open the reset link here.</p>
+              <a class="btn btn-dark btn-sm" id="demo-reset-link" href="#">Open reset link</a>
+            </div>
+          </div>
+          <p class="account-switch"><button type="button" data-mode="signin">Back to sign in</button></p>
+        </div>
+
+        <!-- New password from the emailed link -->
+        <form id="form-reset" novalidate hidden>
+          <div class="field">
+            <label class="field-label" for="rp-email">Work email</label>
+            <input class="input" id="rp-email" type="email" readonly />
+          </div>
+          <div class="field">
+            <label class="field-label" for="rp-password">New password</label>
+            <div class="input-password">
+              <input class="input" id="rp-password" type="password" autocomplete="new-password" required />
+              <button class="icon-btn" type="button" data-toggle-password aria-label="Show password"><i class="hgi hgi-stroke hgi-view"></i></button>
+            </div>
+            <p class="field-hint">At least 8 characters.</p>
+          </div>
+          <div class="field">
+            <label class="field-label" for="rp-confirm">Confirm new password</label>
+            <input class="input" id="rp-confirm" type="password" autocomplete="new-password" required />
+          </div>
+          <p class="form-error" role="alert" hidden><i class="hgi hgi-stroke hgi-alert-circle" aria-hidden="true"></i><span></span></p>
+          <button class="btn btn-dark btn-lg" type="submit">Save new password <i class="hgi hgi-stroke hgi-arrow-right-01"></i></button>
+        </form>
+
+        <div class="account-sent" id="reset-invalid" hidden>
+          <span class="account-sent-icon is-danger" aria-hidden="true"><i class="hgi hgi-stroke hgi-unavailable"></i></span>
+          <p>This reset link has expired or was already used. Reset links work once, for <span data-reset-minutes></span> minutes.</p>
+          <button class="btn btn-dark btn-lg" type="button" data-mode="forgot">Get a new link</button>
+        </div>
+      </main>
+
+      <p class="login-foot"><a href="../index.html">Back to the shop</a></p>
+    </div>
+
+    <aside class="login-art" aria-hidden="true">
+      <span class="login-art-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".6" stroke-linecap="round">
+          <circle cx="11" cy="12" r="7.5" />
+          <path d="M4.2 14.5C7.5 11.5 12 7 14.5 4.9M6.2 17.6C10 14.5 15 10 17.6 6.6M10 19.4C12.8 17.3 16.4 14 18.4 11M16.4 17.2C17.8 18.8 19.6 19.6 21.5 19" />
+        </svg>
+      </span>
+      <h2>Your whole shop, in one calm place.</h2>
+      <p>Verify payments, ship orders, keep stock right and track every rufiyaa you spend.</p>
+      <ul>
+        <li><i class="hgi hgi-stroke hgi-shopping-bag-01"></i>Orders</li>
+        <li><i class="hgi hgi-stroke hgi-package"></i>Products</li>
+        <li><i class="hgi hgi-stroke hgi-user-group"></i>Customers</li>
+        <li><i class="hgi hgi-stroke hgi-invoice-01"></i>Expenses</li>
+      </ul>
+    </aside>
+  </div>
+</body>
+</html>

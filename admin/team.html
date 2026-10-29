@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team &amp; roles | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/team.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="team">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i><span aria-current="page">Team &amp; roles</span>
+            </nav>
+            <h1>Team &amp; roles</h1>
+            <p>Who can sign in to the portal, and what each role can see and change.</p>
+          </div>
+          <div class="head-actions">
+            <button class="btn btn-outline" type="button" id="add-role" data-manage hidden><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>New role</button>
+            <button class="btn btn-primary" type="button" id="add-member" data-manage><i class="hgi hgi-stroke hgi-user-add-01" aria-hidden="true"></i>Add team member</button>
+          </div>
+        </div>
+
+        <div class="tabs settings-tabs" role="tablist" aria-label="Team" id="t-tabs">
+          <button class="tab" type="button" role="tab" data-tab="members" aria-controls="panel-members">Team members <span class="tab-count" id="member-count"></span></button>
+          <button class="tab" type="button" role="tab" data-tab="roles" aria-controls="panel-roles">Roles &amp; permissions <span class="tab-count" id="role-count"></span></button>
+        </div>
+
+        <section class="card list-card" id="panel-members" role="tabpanel" aria-label="Team members">
+          <div class="table-wrap"><table class="table" id="m-table"></table></div>
+        </section>
+
+        <section id="panel-roles" role="tabpanel" aria-label="Roles and permissions" hidden>
+          <div class="role-cards" id="role-cards"></div>
+          <form class="card" id="role-form" novalidate>
+            <div class="card-head">
+              <h2 id="rf-title"></h2>
+              <p id="rf-sub"></p>
+            </div>
+            <div class="field-grid" id="rf-fields">
+              <div class="field">
+                <label class="field-label" for="rf-name">Role name</label>
+                <input class="input" id="rf-name" maxlength="40" required />
+              </div>
+              <div class="field">
+                <label class="field-label" for="rf-desc">Description</label>
+                <input class="input" id="rf-desc" maxlength="120" />
+              </div>
+            </div>
+            <div class="table-wrap perm-wrap">
+              <table class="table perm-table">
+                <thead><tr><th>Area</th><th>No access</th><th>View</th><th>View &amp; change</th></tr></thead>
+                <tbody id="perm-body"></tbody>
+              </table>
+            </div>
+            <div class="card-actions">
+              <button class="link-btn link-btn-danger card-actions-left" type="button" id="rf-delete" hidden><i class="hgi hgi-stroke hgi-delete-02" aria-hidden="true"></i>Delete role</button>
+              <button class="btn btn-dark" type="submit" data-manage>Save role</button>
+            </div>
+          </form>
+        </section>
+
+        <dialog class="dialog dialog-form" id="member-dialog" aria-labelledby="md-title">
+          <span class="dialog-icon is-calm" aria-hidden="true"><i class="hgi hgi-stroke hgi-user-add-01"></i></span>
+          <h2 id="md-title">Add team member</h2>
+          <p id="md-intro">They sign in at the admin portal with their email and a temporary password.</p>
+          <form class="dialog-fields" id="md-form" novalidate>
+            <div class="field">
+              <label class="field-label" for="md-name">Full name</label>
+              <input class="input" id="md-name" autocomplete="off" required />
+            </div>
+            <div class="field">
+              <label class="field-label" for="md-email">Work email</label>
+              <input class="input" id="md-email" type="email" autocomplete="off" required />
+            </div>
+            <div class="field">
+              <label class="field-label" for="md-role">Role</label>
+              <div class="select">
+                <select id="md-role"></select>
+                <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="new-role" id="md-new-role" hidden>
+              <div class="field">
+                <label class="field-label" for="md-role-name">New role name</label>
+                <input class="input" id="md-role-name" maxlength="40" placeholder="e.g. Packing &amp; delivery" />
+              </div>
+              <div class="field">
+                <label class="field-label" for="md-role-base">Start with the access of</label>
+                <div class="select">
+                  <select id="md-role-base"></select>
+                  <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                </div>
+                <p class="field-hint">You can change exactly what this role can see afterwards.</p>
+              </div>
+            </div>
+            <p class="form-error" role="alert" hidden><i class="hgi hgi-stroke hgi-alert-circle" aria-hidden="true"></i><span></span></p>
+            <div class="dialog-actions">
+              <button class="btn btn-dark" type="submit">Add member</button>
+              <button class="btn btn-outline" type="button" data-close>Cancel</button>
+            </div>
+          </form>
+          <div class="dialog-fields" id="md-done" hidden>
+            <p>Share these sign-in details with <strong id="md-done-name"></strong>. Once the shop's email service is connected, invites will be emailed instead.</p>
+            <div class="secret"><span id="md-secret"></span><button class="btn btn-dark btn-sm" type="button" id="md-copy">Copy</button></div>
+            <div class="dialog-actions">
+              <button class="btn btn-dark" type="button" id="md-adjust" hidden>Set what this role can see</button>
+              <button class="btn btn-outline" type="button" data-close>Done</button>
+            </div>
+          </div>
+        </dialog>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

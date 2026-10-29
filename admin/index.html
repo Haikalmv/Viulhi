@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/demo-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/dashboard.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="dashboard">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <h1 id="dash-hello">Dashboard</h1>
+            <p id="dash-date"></p>
+          </div>
+          <div class="head-actions">
+            <a class="btn btn-outline" href="../index.html" target="_blank" rel="noopener"><i class="hgi hgi-stroke hgi-store-02" aria-hidden="true"></i>View store</a>
+            <a class="btn btn-primary" href="product.html" data-perm="products:manage"><i class="hgi hgi-stroke hgi-add-01" aria-hidden="true"></i>Add product</a>
+          </div>
+        </div>
+
+        <div class="dash-welcome" id="dash-sample" hidden>
+          <div>
+            <h2 id="sample-title"></h2>
+            <p id="sample-text"></p>
+          </div>
+          <button class="btn btn-dark" type="button" id="sample-btn"></button>
+        </div>
+
+        <div class="dash-stats" id="dash-stats"></div>
+
+        <div class="dash-grid">
+          <div class="dash-col">
+            <section class="card" data-perm="orders" aria-labelledby="tasks-title">
+              <div class="card-head">
+                <h2 id="tasks-title">Needs attention</h2>
+                <a class="link-btn" href="orders.html?tab=verify">All orders <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i></a>
+              </div>
+              <ul class="task-list" id="tasks"></ul>
+            </section>
+
+            <section class="card" data-perm="orders" aria-labelledby="recent-title">
+              <div class="card-head">
+                <h2 id="recent-title">Recent orders</h2>
+                <a class="link-btn" href="orders.html">View all <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i></a>
+              </div>
+              <div class="table-wrap"><table class="table" id="recent-orders"></table></div>
+            </section>
+          </div>
+
+          <div class="dash-col">
+            <section class="card" data-perm="orders" aria-labelledby="month-title">
+              <div class="card-head"><h2 id="month-title">This month</h2></div>
+              <div class="mini-stats" id="mini-stats"></div>
+            </section>
+
+            <section class="card" data-perm="products" aria-labelledby="low-title">
+              <div class="card-head">
+                <h2 id="low-title">Low on stock</h2>
+                <a class="link-btn" href="products.html?tab=low">View all <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i></a>
+              </div>
+              <ul class="task-list" id="low-stock"></ul>
+            </section>
+
+            <section class="card" aria-labelledby="activity-title">
+              <div class="card-head"><h2 id="activity-title">Recent activity</h2></div>
+              <ul class="activity" id="activity"></ul>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

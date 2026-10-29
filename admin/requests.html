@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom requests | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/requests.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="requests">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i><span aria-current="page">Custom requests</span>
+            </nav>
+            <h1>Custom requests</h1>
+            <p>Ideas customers sent from the Custom orders page. Reply with a quote, then track the answer.</p>
+          </div>
+        </div>
+
+        <section class="card list-card" aria-label="Request list">
+          <div class="list-toolbar">
+            <div class="input-search">
+              <i class="hgi hgi-stroke hgi-search-01" aria-hidden="true"></i>
+              <label class="visually-hidden" for="r-q">Search requests</label>
+              <input class="input" id="r-q" type="search" placeholder="Name, email or idea" />
+            </div>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Filter requests" id="r-tabs">
+            <button class="tab" type="button" role="tab" data-tab="new">New <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="quoted">Quoted <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="accepted">Accepted <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="declined">Declined <span class="tab-count"></span></button>
+            <button class="tab" type="button" role="tab" data-tab="all">All <span class="tab-count"></span></button>
+          </div>
+          <div class="table-wrap"><table class="table" id="r-table"></table></div>
+          <div class="list-empty" id="r-empty" hidden>
+            <i class="hgi hgi-stroke hgi-sparkles" aria-hidden="true"></i>
+            <strong id="r-empty-title">No requests here</strong>
+            <span id="r-empty-text"></span>
+          </div>
+          <div class="pager" id="r-pager"></div>
+        </section>
+
+        <dialog class="sheet" id="r-sheet" aria-labelledby="rs-title">
+          <div class="sheet-head">
+            <div>
+              <h2 id="rs-title" tabindex="-1"></h2>
+              <p id="rs-sub"></p>
+            </div>
+            <button class="icon-btn" type="button" data-sheet-close aria-label="Close"><i class="hgi hgi-stroke hgi-cancel-01"></i></button>
+          </div>
+          <form class="sheet-body" id="rs-form" novalidate>
+            <div id="rs-person"></div>
+            <dl class="meta-list" id="rs-meta"></dl>
+            <div class="callout callout-tint"><i class="hgi hgi-stroke hgi-message-01" aria-hidden="true"></i><div><strong>Their idea</strong><p id="rs-details"></p></div></div>
+            <div id="rs-photos"></div>
+
+            <div class="req-reply">
+              <div class="req-reply-head">
+                <h3>Your reply</h3>
+                <span id="rs-badge"></span>
+              </div>
+              <div id="rs-state"></div>
+              <div class="field-grid">
+                <div class="field">
+                  <label class="field-label" for="rs-quote">Quote (incl. GST)</label>
+                  <div class="input-prefix"><span>MVR</span><input class="input" id="rs-quote" type="number" min="0" step="0.01" inputmode="decimal" /></div>
+                </div>
+                <div class="field span-2">
+                  <label class="field-label" for="rs-note">Message to the customer <span class="optional">(optional)</span></label>
+                  <textarea class="textarea" id="rs-note" rows="3" placeholder="e.g. Ready in about 10 days. We'll send photos as we go."></textarea>
+                </div>
+              </div>
+              <a class="link-btn" id="rs-email" href="#"><i class="hgi hgi-stroke hgi-mail-01" aria-hidden="true"></i>Write the reply email</a>
+            </div>
+
+            <div>
+              <p class="field-label">Activity</p>
+              <ol class="timeline" id="rs-history"></ol>
+            </div>
+          </form>
+          <div class="sheet-foot" id="rs-actions"></div>
+        </dialog>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

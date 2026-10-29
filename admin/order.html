@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/order.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="orders">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <a href="orders.html">Orders</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <span aria-current="page" id="crumb"></span>
+            </nav>
+            <h1><span id="od-title"></span> <span id="od-badge"></span></h1>
+            <p id="od-meta"></p>
+          </div>
+          <div class="head-actions" id="od-actions"></div>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail-main">
+            <section class="status-card" aria-label="Order progress">
+              <div id="od-track"></div>
+            </section>
+
+            <section class="card" aria-labelledby="od-pay-title">
+              <div class="card-head"><h2 id="od-pay-title">Payment</h2></div>
+              <div id="od-payment"></div>
+            </section>
+
+            <section class="card" aria-labelledby="od-items-title">
+              <div class="card-head"><h2 id="od-items-title">Items</h2></div>
+              <ul class="item-rows" id="od-items"></ul>
+              <dl class="summary-rows totals" id="od-totals"></dl>
+            </section>
+
+            <section class="card" aria-labelledby="od-hist-title">
+              <div class="card-head"><h2 id="od-hist-title">History</h2></div>
+              <ul class="timeline" id="od-history"></ul>
+            </section>
+          </div>
+
+          <div class="detail-side">
+            <section class="card" aria-labelledby="od-cust-title">
+              <div class="card-head">
+                <h2 id="od-cust-title">Customer</h2>
+                <a class="link-btn" id="od-cust-link" href="#">Profile <i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i></a>
+              </div>
+              <div id="od-customer"></div>
+            </section>
+
+            <section class="card" aria-labelledby="od-del-title">
+              <div class="card-head"><h2 id="od-del-title">Delivery</h2></div>
+              <dl class="meta-list" id="od-delivery"></dl>
+            </section>
+
+            <section class="card" aria-labelledby="od-notes-title">
+              <div class="card-head">
+                <h2 id="od-notes-title">Notes</h2>
+                <p>Only your team sees staff notes.</p>
+              </div>
+              <div class="callout callout-tint" id="od-cust-note" hidden>
+                <i class="hgi hgi-stroke hgi-message-01" aria-hidden="true"></i>
+                <div><strong>From the customer</strong><p></p></div>
+              </div>
+              <form id="od-notes-form" class="form-stack" novalidate>
+                <div class="field">
+                  <label class="visually-hidden" for="od-notes">Staff notes</label>
+                  <textarea class="textarea" id="od-notes" rows="4" placeholder="e.g. Gift wrap with the pink ribbon"></textarea>
+                </div>
+                <button class="btn btn-outline btn-sm" type="submit" data-manage>Save note</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

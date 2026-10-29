@@ -1,0 +1,150 @@
+/* =========================================================================
+   CHECKOUT PAGE: numbered steps + order summary, bank transfer with slip.
+   ========================================================================= */
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.checkout-steps { display: grid; gap: var(--space-5); }
+
+/* ---- Step card (numbered, like the home value grid) ------------------ */
+.step {
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+.step-head { display: flex; gap: var(--space-4); margin-bottom: var(--space-6); }
+.step-num {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--color-surface-tint);
+  color: var(--color-primary-text);
+  font-size: var(--text-sm); font-weight: var(--weight-bold);
+}
+.step-head h2 { font-size: var(--text-xl); font-weight: var(--weight-semibold); letter-spacing: -0.01em; line-height: 36px; }
+.step-head p { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: 2px; line-height: var(--leading-snug); }
+
+.step-block + .step-block { margin-top: var(--space-6); }
+
+/* ---- Bank details ---------------------------------------------------- */
+.bank-details {
+  margin-top: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-muted);
+  overflow: hidden;
+}
+.bank-row {
+  display: flex; align-items: center; gap: var(--space-4);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+}
+.bank-row + .bank-row { border-top: 1px solid var(--color-border); }
+.bank-row dt { flex: 0 0 132px; font-size: var(--text-xs); color: var(--color-text-muted); }
+.bank-row dd { flex: 1; min-width: 0; font-weight: var(--weight-semibold); font-size: var(--text-sm); word-break: break-all; }
+.bank-row.is-amount { background: var(--color-surface-tint); }
+.bank-row.is-amount dd { font-size: var(--text-lg); font-weight: var(--weight-bold); }
+.copy-btn { width: 36px; height: 36px; font-size: 18px; color: var(--color-text-muted); flex-shrink: 0; }
+.copy-btn:hover { background: var(--color-surface); color: var(--color-text); }
+.copy-btn.is-copied { color: var(--color-success); }
+
+.transfer-steps { margin-top: var(--space-5); display: grid; gap: var(--space-2); counter-reset: ts; }
+.transfer-steps li {
+  display: flex; gap: var(--space-3);
+  font-size: var(--text-sm); color: var(--color-text-muted);
+  counter-increment: ts;
+}
+.transfer-steps li::before {
+  content: counter(ts);
+  width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  font-size: 11px; font-weight: var(--weight-bold); color: var(--color-text);
+}
+.transfer-steps strong { color: var(--color-text); font-weight: var(--weight-semibold); }
+
+/* ---- Place order ----------------------------------------------------- */
+.place-order { display: grid; gap: var(--space-4); }
+.place-order .btn { width: 100%; }
+.place-order .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.place-hint {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font-size: var(--text-xs); color: var(--color-text-muted); text-align: center;
+}
+.place-hint i { font-size: 16px; }
+.place-hint.is-ready { color: var(--color-success); }
+
+/* ---- Summary aside --------------------------------------------------- */
+.checkout-summary { position: sticky; top: calc(var(--header-h) + var(--space-6)); }
+.checkout-summary .summary-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-5); }
+.checkout-summary .summary-head h2 { margin: 0; }
+.checkout-summary .summary-head a { font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--color-primary-text); }
+
+.mini-items { display: grid; gap: var(--space-4); padding-bottom: var(--space-5); margin-bottom: var(--space-5); border-bottom: 1px solid var(--color-border); }
+.mini-item { display: flex; align-items: center; gap: var(--space-4); }
+.mini-thumb {
+  position: relative; flex-shrink: 0;
+  width: 56px; height: 64px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  overflow: hidden;
+}
+.mini-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.mini-thumb.is-loaded img { opacity: 1; }
+.mini-thumb .media-fallback { font-size: 22px; }
+.mini-qty {
+  position: absolute; top: -1px; right: -1px; z-index: 1;
+  min-width: 20px; height: 20px; padding: 0 5px;
+  display: grid; place-items: center;
+  border-radius: 0 var(--radius-sm) 0 var(--radius-sm);
+  background: var(--color-strong); color: var(--color-on-strong);
+  font-size: 11px; font-weight: var(--weight-bold);
+}
+.mini-name { flex: 1; min-width: 0; font-size: var(--text-sm); font-weight: var(--weight-semibold); line-height: var(--leading-snug); }
+.mini-name span { display: block; font-size: var(--text-xs); font-weight: var(--weight-regular); color: var(--color-text-muted); }
+.mini-amount { font-size: var(--text-sm); font-weight: var(--weight-semibold); white-space: nowrap; }
+
+/* ---- Payment page ---------------------------------------------------- */
+.pay-status { margin-bottom: var(--space-8); scroll-margin-top: calc(var(--header-h) + var(--space-4)); }
+.pay-layout .confirm { max-width: none; margin: 0; }
+.cancel-order { justify-self: center; margin-top: var(--space-2); }
+.is-cancelled-view .confirm-icon { background: color-mix(in oklab, var(--color-sale) 14%, var(--color-surface)); color: var(--color-sale); }
+.place-order .callout { margin-bottom: var(--space-1); }
+
+.deliver-to { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-border); font-size: var(--text-sm); }
+.deliver-to h3 { font-size: var(--text-sm); font-weight: var(--weight-semibold); letter-spacing: 0; margin-bottom: var(--space-2); }
+.deliver-to p { color: var(--color-text-muted); }
+.deliver-to strong { color: var(--color-text); font-weight: var(--weight-semibold); }
+
+/* ---- Confirmation ---------------------------------------------------- */
+.confirm { max-width: 720px; margin-inline: auto; scroll-margin-top: calc(var(--header-h) + var(--space-6)); }
+.confirm:focus { outline: none; }
+.confirm .empty-state { padding-block: var(--space-16); }
+.confirm-icon { background: var(--color-primary); color: var(--color-on-primary); }
+.confirm-ref {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  margin-bottom: var(--space-6); padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  font-size: var(--text-sm); font-weight: var(--weight-semibold);
+}
+.confirm-next { margin-top: var(--space-6); }
+.confirm-next .step-head { margin-bottom: var(--space-5); }
+.confirm-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-8); }
+
+/* ---- Responsive ------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .checkout-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .checkout-summary { position: static; order: -1; }
+  .pay-layout .checkout-summary { order: 0; } /* on payment, the bank details come first */
+}
+@media (max-width: 560px) {
+  .step { padding: var(--space-6) var(--space-5); }
+  .bank-row { flex-wrap: wrap; gap: 0 var(--space-3); padding-left: var(--space-4); }
+  .bank-row dt { flex-basis: 100%; }
+}

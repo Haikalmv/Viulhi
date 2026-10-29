@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product | Viulhi Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" />
+
+  <!-- Design system (order matters) + portal -->
+  <link rel="stylesheet" href="../css/tokens.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/base.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/components.css?v=202610291533" />
+  <link rel="stylesheet" href="../css/admin.css?v=202610291533" />
+
+  <!-- Loaded early (no defer) so the saved theme + brand colours apply before the page paints -->
+  <script src="../js/theme.js?v=202610291533"></script>
+  <script src="../js/config.js?v=202610291533" defer></script>
+  <script src="../js/store-settings.js?v=202610291533" defer></script>
+  <script src="../js/catalog.js?v=202610291533" defer></script>
+  <script src="../js/cart.js?v=202610291533" defer></script>
+  <script src="../js/product-card.js?v=202610291533" defer></script>
+  <script src="../js/forms.js?v=202610291533" defer></script>
+  <script src="../js/order-store.js?v=202610291533" defer></script>
+  <script src="../js/file-store.js?v=202610291533" defer></script>
+  <script src="../js/auth.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin-data.js?v=202610291533" defer></script>
+  <script src="../js/admin/admin.js?v=202610291533" defer></script>
+  <script src="../js/admin/product-edit.js?v=202610291533" defer></script>
+</head>
+<body class="admin" data-module="products">
+  <div class="admin-app">
+    <aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin menu"></aside>
+    <div class="admin-main">
+      <header class="admin-topbar" id="admin-topbar"></header>
+      <main class="admin-content" id="main">
+        <div class="admin-head">
+          <div>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+              <a href="index.html">Dashboard</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <a href="products.html">Products</a><i class="hgi hgi-stroke hgi-arrow-right-01" aria-hidden="true"></i>
+              <span aria-current="page" id="crumb">New product</span>
+            </nav>
+            <h1 id="pe-title">Add product</h1>
+          </div>
+          <div class="head-actions">
+            <a class="btn btn-outline" id="pe-view" href="#" target="_blank" rel="noopener" hidden><i class="hgi hgi-stroke hgi-link-square-02" aria-hidden="true"></i>View in shop</a>
+            <div class="menu" id="pe-more" data-manage hidden>
+              <button class="btn btn-outline" type="button" data-menu aria-expanded="false"><i class="hgi hgi-stroke hgi-more-horizontal" aria-hidden="true"></i>More</button>
+              <div class="menu-pop" hidden>
+                <button type="button" id="pe-duplicate"><i class="hgi hgi-stroke hgi-copy-01" aria-hidden="true"></i>Duplicate</button>
+                <hr />
+                <button type="button" class="is-danger" id="pe-delete"><i class="hgi hgi-stroke hgi-delete-02" aria-hidden="true"></i>Delete product</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="pe-form" novalidate>
+          <div class="detail-grid">
+            <div class="detail-main">
+              <section class="card" aria-labelledby="pe-details">
+                <div class="card-head"><h2 id="pe-details">Details</h2></div>
+                <div class="form-stack">
+                  <div class="field">
+                    <label class="field-label" for="pe-name">Product name</label>
+                    <input class="input" id="pe-name" maxlength="80" required />
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="pe-desc">Description <span class="optional">(optional)</span></label>
+                    <textarea class="textarea" id="pe-desc" rows="5" placeholder="Size, materials, care instructions, what makes it special…"></textarea>
+                  </div>
+                  <div class="field-grid">
+                    <div class="field">
+                      <label class="field-label" for="pe-cat">Category</label>
+                      <div class="select">
+                        <select id="pe-cat" required><option value="">Choose a category</option></select>
+                        <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="field-label" for="pe-tag-input">Tags <span class="optional">(optional)</span></label>
+                      <div class="tag-input" id="pe-tags">
+                        <input id="pe-tag-input" placeholder="Type and press Enter" />
+                      </div>
+                      <p class="field-hint">Helps search, e.g. bunny, pastel, gift.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="pe-photo-title">
+                <div class="card-head">
+                  <h2 id="pe-photo-title">Photo</h2>
+                  <p>Portrait 4:5 on a plain, light background works best.</p>
+                </div>
+                <div class="image-pick">
+                  <div class="image-pick-preview" id="pe-preview"></div>
+                  <div>
+                    <label class="dropzone" id="pe-drop">
+                      <input type="file" id="pe-file" accept="image/*" />
+                      <span class="dropzone-icon" aria-hidden="true"><i class="hgi hgi-stroke hgi-image-upload"></i></span>
+                      <strong>Drop a photo here or <u>browse</u></strong>
+                      <small>JPG, PNG or WEBP. It's resized for the web automatically.</small>
+                    </label>
+                    <div class="image-pick-actions">
+                      <button class="link-btn link-btn-danger" type="button" id="pe-photo-remove" hidden><i class="hgi hgi-stroke hgi-delete-02" aria-hidden="true"></i>Remove photo</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="pe-price-title">
+                <div class="card-head">
+                  <h2 id="pe-price-title">Pricing</h2>
+                  <p>Enter prices before GST. The shop adds <span data-gst></span> automatically.</p>
+                </div>
+                <div class="field-grid">
+                  <div class="field">
+                    <label class="field-label" for="pe-price">Price (excl. GST)</label>
+                    <div class="input-prefix"><span>MVR</span><input class="input" id="pe-price" type="number" min="0" step="0.01" inputmode="decimal" required /></div>
+                    <p class="price-preview" id="pe-price-preview"></p>
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="pe-compare">Compare-at price <span class="optional">(optional)</span></label>
+                    <div class="input-prefix"><span>MVR</span><input class="input" id="pe-compare" type="number" min="0" step="0.01" inputmode="decimal" /></div>
+                    <p class="field-hint">The old price, shown crossed out for a sale.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="pe-stock-title">
+                <div class="card-head">
+                  <h2 id="pe-stock-title">Inventory</h2>
+                  <p>Stock goes down automatically when you verify an order's payment.</p>
+                </div>
+                <div class="field-grid">
+                  <div class="field">
+                    <label class="field-label" for="pe-stock">In stock</label>
+                    <input class="input" id="pe-stock" type="number" min="0" step="1" inputmode="numeric" required />
+                  </div>
+                  <div class="field">
+                    <label class="field-label" for="pe-sold">Sold so far</label>
+                    <input class="input" id="pe-sold" type="number" readonly />
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="detail-side">
+              <section class="card" aria-labelledby="pe-status-title">
+                <div class="card-head"><h2 id="pe-status-title">Status</h2></div>
+                <div class="radio-cards choice-list" role="radiogroup" aria-labelledby="pe-status-title">
+                  <label class="radio-card">
+                    <input type="radio" name="status" value="published" />
+                    <span class="radio-card-text"><strong>Published</strong><span>Visible in the shop</span></span>
+                    <span class="radio-card-check" aria-hidden="true"><i class="hgi hgi-stroke hgi-tick-02"></i></span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="status" value="draft" />
+                    <span class="radio-card-text"><strong>Draft</strong><span>Only your team can see it</span></span>
+                    <span class="radio-card-check" aria-hidden="true"><i class="hgi hgi-stroke hgi-tick-02"></i></span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="pe-hl-title">
+                <div class="card-head"><h2 id="pe-hl-title">Highlights</h2></div>
+                <div class="form-stack">
+                  <label class="switch"><input type="checkbox" id="pe-featured" /> Show on the home page</label>
+                  <div class="field">
+                    <label class="field-label" for="pe-badge">Badge</label>
+                    <div class="select">
+                      <select id="pe-badge">
+                        <option value="">None</option>
+                        <option>New</option>
+                        <option>Bestseller</option>
+                        <option>Limited</option>
+                        <option>Made to order</option>
+                      </select>
+                      <i class="hgi hgi-stroke hgi-arrow-down-01" aria-hidden="true"></i>
+                    </div>
+                    <p class="field-hint">Sale and sold-out badges are added automatically.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card" aria-labelledby="pe-card-title">
+                <div class="card-head"><h2 id="pe-card-title">Shop preview</h2></div>
+                <div class="card-preview" id="pe-card" aria-hidden="true"></div>
+              </section>
+            </div>
+          </div>
+
+          <div class="save-bar" data-manage>
+            <span id="save-state">All changes saved</span>
+            <div>
+              <a class="btn btn-outline" href="products.html">Cancel</a>
+              <button class="btn btn-primary" type="submit">Save product</button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

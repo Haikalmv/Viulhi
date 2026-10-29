@@ -1,0 +1,189 @@
+/* =========================================================================
+   VIULHI DESIGN TOKENS
+   The single source of truth for colour, type, spacing, radius, shadow and
+   motion. Every page, portal and app uses these, never raw values.
+   See DESIGN.md for usage rules.
+   ========================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------
+     1. BRAND INPUTS: change these four to rebrand everything.
+        The admin portal's brand settings will write to these later.
+     --------------------------------------------------------------------- */
+  --brand-primary:   #F2A488;  /* peach: primary actions, highlights */
+  --brand-secondary: #F6C6CC;  /* light pink: soft surfaces, accents */
+  --brand-warm:      #FBEDE4;  /* warm cream: tiles, backgrounds */
+  --brand-ink:       #2A1F1B;  /* warm near-black: text, dark buttons */
+
+  /* ---------------------------------------------------------------------
+     2. DERIVED SCALES: generated from the inputs, don't edit by hand.
+     --------------------------------------------------------------------- */
+  --primary-50:  color-mix(in oklab, var(--brand-primary) 10%, white);
+  --primary-100: color-mix(in oklab, var(--brand-primary) 22%, white);
+  --primary-200: color-mix(in oklab, var(--brand-primary) 45%, white);
+  --primary-300: color-mix(in oklab, var(--brand-primary) 70%, white);
+  --primary-500: var(--brand-primary);
+  --primary-600: color-mix(in oklab, var(--brand-primary) 85%, black);
+  --primary-700: color-mix(in oklab, var(--brand-primary) 62%, black);
+  --primary-800: color-mix(in oklab, var(--brand-primary) 42%, black);
+
+  --pink-50:  color-mix(in oklab, var(--brand-secondary) 18%, white);
+  --pink-100: color-mix(in oklab, var(--brand-secondary) 40%, white);
+  --pink-300: var(--brand-secondary);
+
+  --ink-900: var(--brand-ink);
+  --ink-700: color-mix(in oklab, var(--brand-ink) 78%, white);
+  --ink-500: color-mix(in oklab, var(--brand-ink) 58%, white);
+  --ink-300: color-mix(in oklab, var(--brand-ink) 22%, white);
+  --ink-100: color-mix(in oklab, var(--brand-ink) 9%, white);
+
+  /* ---------------------------------------------------------------------
+     3. SEMANTIC COLOURS (light): components use ONLY these.
+     --------------------------------------------------------------------- */
+  --color-bg:            color-mix(in oklab, var(--brand-warm) 22%, white);
+  --color-surface:       #FFFFFF;
+  --color-surface-muted: color-mix(in oklab, var(--brand-warm) 75%, white);
+  --color-surface-tint:  var(--pink-50);
+  --color-text:          var(--ink-900);
+  --color-text-muted:    var(--ink-500);
+  --color-border:        var(--ink-100);
+  --color-border-strong: var(--ink-300);
+
+  --color-primary:       var(--primary-500);
+  --color-primary-hover: var(--primary-600);
+  --color-on-primary:    var(--brand-ink);
+  --color-primary-text:  var(--primary-700);   /* peach that's readable as text */
+
+  --color-strong:        var(--brand-ink);     /* dark pill buttons, footer */
+  --color-strong-hover:  var(--ink-700);
+  --color-on-strong:     #FFFFFF;
+
+  --color-sale:          #C2453A;
+  --color-success:       #3F8A63;
+  --color-overlay:       rgba(20, 13, 10, .45);
+  --color-header:        color-mix(in oklab, var(--color-bg) 82%, transparent);
+
+  /* "Add to cart" on product cards: peach in light mode, cream in dark mode */
+  --color-cart-btn:       var(--color-primary);
+  --color-cart-btn-hover: var(--color-primary-hover);
+  --color-on-cart-btn:    var(--color-on-primary);
+
+  /* Soft glows + icon for image placeholders and tinted feature areas */
+  --color-glow-pink:     var(--pink-100);
+  --color-glow-peach:    var(--primary-50);
+  --color-placeholder:   var(--primary-300);
+
+  color-scheme: light;
+
+  /* ---------------------------------------------------------------------
+     4. TYPOGRAPHY: one clean modern sans for everything.
+     --------------------------------------------------------------------- */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-thaana: "Faruma", "MV Boli", sans-serif;
+
+  --text-xs:   0.75rem;    /* 12: badges, legal */
+  --text-sm:   0.875rem;   /* 14: meta, captions */
+  --text-base: 1rem;       /* 16: body */
+  --text-lg:   1.125rem;   /* 18: lead text */
+  --text-xl:   1.25rem;    /* 20: card titles */
+  --text-2xl:  1.5rem;     /* 24 */
+  --text-3xl:  clamp(1.75rem, 1.2rem + 2vw, 2.25rem);   /* section titles */
+  --text-4xl:  clamp(2.1rem, 1.3rem + 3vw, 3rem);       /* page titles */
+  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 4.5rem); /* hero only */
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  --leading-tight: 1.1;
+  --leading-snug:  1.3;
+  --leading-body:  1.65;
+  --tracking-tight: -0.025em;
+  --tracking-wide:  0.08em;
+
+  /* ---------------------------------------------------------------------
+     5. SPACING (4px grid), LAYOUT, RADIUS, SHADOW, MOTION
+     --------------------------------------------------------------------- */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 20px;  --space-6: 24px;  --space-8: 32px;  --space-10: 40px;
+  --space-12: 48px; --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+  --container: 1240px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section-gap: clamp(64px, 8vw, 112px);
+  --header-h: 72px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(42, 31, 27, .06);
+  --shadow-md: 0 8px 24px -12px rgba(42, 31, 27, .18);
+  --shadow-lg: 0 24px 48px -24px rgba(42, 31, 27, .28);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --duration-fast: .15s;
+  --duration: .25s;
+  --duration-slow: .6s;
+}
+
+/* -----------------------------------------------------------------------
+   DARK MODE: same semantic names, warm dark values.
+   Applied by system preference, or by the toggle (data-theme on <html>).
+   Keep the two blocks below identical.
+   ----------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg:            color-mix(in oklab, var(--brand-ink) 62%, black);
+    --color-surface:       color-mix(in oklab, var(--brand-ink) 82%, black);
+    --color-surface-muted: var(--brand-ink);
+    --color-surface-tint:  color-mix(in oklab, var(--brand-primary) 10%, var(--brand-ink));
+    --color-text:          var(--brand-warm);
+    --color-text-muted:    color-mix(in oklab, var(--brand-warm) 62%, var(--brand-ink));
+    --color-border:        color-mix(in oklab, var(--brand-warm) 10%, transparent);
+    --color-border-strong: color-mix(in oklab, var(--brand-warm) 24%, transparent);
+    --color-primary-text:  var(--primary-300);
+    --color-strong:        var(--brand-warm);
+    --color-strong-hover:  #FFFFFF;
+    --color-on-strong:     var(--brand-ink);
+    --color-sale:          #EE7B6E;
+    --color-header:        color-mix(in oklab, var(--color-bg) 82%, transparent);
+    --color-glow-pink:     color-mix(in oklab, var(--brand-secondary) 16%, var(--brand-ink));
+    --color-glow-peach:    color-mix(in oklab, var(--brand-ink) 80%, black);
+    --color-placeholder:   color-mix(in oklab, var(--brand-primary) 40%, var(--brand-ink));
+    --color-cart-btn:       var(--brand-warm);
+    --color-cart-btn-hover: #FFFFFF;
+    --color-on-cart-btn:    var(--brand-ink);
+    --shadow-md: 0 8px 24px -12px rgba(0, 0, 0, .5);
+    --shadow-lg: 0 24px 48px -24px rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg:            color-mix(in oklab, var(--brand-ink) 62%, black);
+  --color-surface:       color-mix(in oklab, var(--brand-ink) 82%, black);
+  --color-surface-muted: var(--brand-ink);
+  --color-surface-tint:  color-mix(in oklab, var(--brand-primary) 10%, var(--brand-ink));
+  --color-text:          var(--brand-warm);
+  --color-text-muted:    color-mix(in oklab, var(--brand-warm) 62%, var(--brand-ink));
+  --color-border:        color-mix(in oklab, var(--brand-warm) 10%, transparent);
+  --color-border-strong: color-mix(in oklab, var(--brand-warm) 24%, transparent);
+  --color-primary-text:  var(--primary-300);
+  --color-strong:        var(--brand-warm);
+  --color-strong-hover:  #FFFFFF;
+  --color-on-strong:     var(--brand-ink);
+  --color-sale:          #EE7B6E;
+  --color-header:        color-mix(in oklab, var(--color-bg) 82%, transparent);
+  --color-glow-pink:     color-mix(in oklab, var(--brand-secondary) 16%, var(--brand-ink));
+  --color-glow-peach:    color-mix(in oklab, var(--brand-ink) 80%, black);
+  --color-placeholder:   color-mix(in oklab, var(--brand-primary) 40%, var(--brand-ink));
+  --color-cart-btn:       var(--brand-warm);
+  --color-cart-btn-hover: #FFFFFF;
+  --color-on-cart-btn:    var(--brand-ink);
+  --shadow-md: 0 8px 24px -12px rgba(0, 0, 0, .5);
+  --shadow-lg: 0 24px 48px -24px rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
